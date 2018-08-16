@@ -51,6 +51,7 @@ public class Program
                 return;
             }
 
+            numer_miesiąca--;
 
             double a = stawka / 2;
             double stawka_nadgodziny = stawka + a;
@@ -58,17 +59,16 @@ public class Program
             double nadgodziny_brutto = liczba_nadgodzin * stawka_nadgodziny;
             double nadgodziny_netto = nadgodziny_brutto * 0.750;
 
-            numer_miesiąca--;
             wynagrodzenie_brutto = (czas_pracy[numer_miesiąca] * stawka) + nadgodziny_brutto;
             wynagrodzenie_netto = (wynagrodzenie_brutto) * 0.750;
             if (liczba_nadgodzin > 0)
             {
                 Console.WriteLine("\n\nPODSUMOWANIE:");
                 Console.WriteLine("------------------------------------------------------------------\n");
-                Console.WriteLine($"Stawka godzinowa: {stawka}zł, liczba nagodzin: {liczba_nadgodzin}");
-                Console.WriteLine($"Miesiąc: {miesiace[numer_miesiąca]}, liczba godzin pracujących w tym miesiącu: {czas_pracy[numer_miesiąca]}.");
-                Console.WriteLine($"\nWynagrodzenie za nadgodziny: {liczba_nadgodzin}, brutto: {nadgodziny_brutto}zł");
-                Console.WriteLine($"Wynagrodzenie za nadgodziny: {liczba_nadgodzin}, netto: {nadgodziny_netto}zł\n");
+                Console.WriteLine($"Stawka godzinowa (brutto): {stawka}zł, liczba nadgodzin: {liczba_nadgodzin}");
+                Console.WriteLine($"Miesiąc: {miesiace[numer_miesiąca]}, wymiar czasu pracy w tym miesiącu: {czas_pracy[numer_miesiąca]}.");
+                Console.WriteLine($"\nLiczba nadgodzin: {liczba_nadgodzin}, wynagrodzenie brutto: {nadgodziny_brutto}zł");
+                Console.WriteLine($"Liczba nadgodzin: {liczba_nadgodzin}, wynagrodzenie netto: {nadgodziny_netto}zł\n");
                 Console.WriteLine($"\nWynagrodzenie całkowite brutto (podstawa + nadgodziny): {wynagrodzenie_brutto}zł");
                 Console.WriteLine($"Wynagrodzenie całkowite netto (podstawa + nadgodziny): {wynagrodzenie_netto}zł");
                 Console.WriteLine("------------------------------------------------------------------\n");
