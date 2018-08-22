@@ -1,92 +1,153 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-public class Program
+namespace KalkulatorWynagrodzen
 {
-    public static bool ESC { get; private set; }
-
-    public static void Main()
+    class Program
     {
-        int numer_miesiąca;
-        int liczba_nadgodzin;
-        double stawka;
-        double wynagrodzenie_brutto;
-        double wynagrodzenie_netto;
-        string[] miesiace = { "styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień" };
-        int[] czas_pracy = { 168, 160, 176, 160, 160, 168, 176, 176, 160, 184, 168, 152 };
-        Console.WriteLine("OBLICZANIE WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
-        do
+        static void Main()
         {
-            Console.Write("Podaj liczbę nadgodzin: ");
-            String line = Console.ReadLine();
-            try
+            while (true)
             {
-                liczba_nadgodzin = Int32.Parse(line);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-            do
-            {
-                Console.Write("Podaj numer miesiąca (1-12): ");
-                String line2 = Console.ReadLine();
                 try
                 {
-                    numer_miesiąca = Int32.Parse(line2);
+                    Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
+                    // Read user data
+                    var workedHours = UserInputConverter.ReadWorkedHours();
+                    var workedMonth = UserInputConverter.ReadMonth();
+                    var hourlyFee = UserInputConverter.ReadHourlyFee();
+                    // Calculate
+                    var overHoursAmount = FeCalculator.CalculateOverhoursAmount(workedMonth, workedHours);
+                    var overHoursGrossIncome = FeCalculator.CalculateOverHoursGrossIncome(overHoursAmount, hourlyFee);
+                    var overHoursNetIncome = FeCalculator.CalculateOverHoursNetIncome(overHoursGrossIncome);
+                    var totalGrossIncome = FeCalculator.CalculateTotalGrossIncome(workedHours, hourlyFee, overHoursGrossIncome);
+                    var totalNetIncome = FeCalculator.CalculateTotalNetIncome(totalGrossIncome);
+                    // Report
+                    var report = ReportBuilder.BuildIncomeMonthlyReport(
+                        workedHours,
+                        workedMonth,
+                        hourlyFee,
+                        overHoursAmount,
+                        overHoursGrossIncome,
+                        overHoursNetIncome,
+                        totalGrossIncome,
+                        totalNetIncome
+                    );
+                    Console.WriteLine(report);
                 }
-                catch (Exception)
+                catch (ArgumentException ex)
                 {
-                    return;
+                    Console.WriteLine(
+                        $"Wystąpił błąd, działanie aplikacji zostanie wznowione! Błąd: {ex.Message}{Environment.NewLine}");
                 }
-            }
-            while (numer_miesiąca > 12 || numer_miesiąca == 0 || numer_miesiąca < 0);
-            Console.Write("Podaj stawkę godzinową (brutto): ");
-            String line3 = Console.ReadLine();
-            try
-            {
-                stawka = Int32.Parse(line3);
-            }
-            catch (Exception)
-            {
-                return;
-            }
-
-            numer_miesiąca--;
-
-            double a = stawka / 2;
-            double stawka_nadgodziny = stawka + a;
-
-            double nadgodziny_brutto = liczba_nadgodzin * stawka_nadgodziny;
-            double nadgodziny_netto = nadgodziny_brutto * 0.750;
-
-            wynagrodzenie_brutto = (czas_pracy[numer_miesiąca] * stawka) + nadgodziny_brutto;
-            wynagrodzenie_netto = (wynagrodzenie_brutto) * 0.750;
-            if (liczba_nadgodzin > 0)
-            {
-                Console.WriteLine("\n\nPODSUMOWANIE:");
-                Console.WriteLine("------------------------------------------------------------------\n");
-                Console.WriteLine($"Stawka godzinowa (brutto): {stawka}zł, liczba nadgodzin: {liczba_nadgodzin}");
-                Console.WriteLine($"Miesiąc: {miesiace[numer_miesiąca]}, wymiar czasu pracy w tym miesiącu: {czas_pracy[numer_miesiąca]}.");
-                Console.WriteLine($"\nLiczba nadgodzin: {liczba_nadgodzin}, wynagrodzenie brutto: {nadgodziny_brutto}zł");
-                Console.WriteLine($"Liczba nadgodzin: {liczba_nadgodzin}, wynagrodzenie netto: {nadgodziny_netto}zł\n");
-                Console.WriteLine($"\nWynagrodzenie całkowite brutto (podstawa + nadgodziny): {wynagrodzenie_brutto}zł");
-                Console.WriteLine($"Wynagrodzenie całkowite netto (podstawa + nadgodziny): {wynagrodzenie_netto}zł");
-                Console.WriteLine("------------------------------------------------------------------\n");
-            }
-            else
-            {
-                Console.WriteLine("\n\nPODSUMOWANIE:");
-                Console.WriteLine("------------------------------------------------------------------\n");
-                Console.WriteLine($"Stawka godzinowa: {stawka}zł");
-                Console.WriteLine($"Miesiąc: {miesiace[numer_miesiąca]}, liczba godzin pracujących w tym miesiącu: {czas_pracy[numer_miesiąca]}.");
-                Console.WriteLine($"\nWynagrodzenie brutto: {wynagrodzenie_brutto}zł");
-                Console.WriteLine($"Wynagrodzenie netto: {wynagrodzenie_netto}zł");
-                Console.WriteLine("------------------------------------------------------------------\n");
             }
         }
-        while (1 > 0);
+    }
+    class UserInputConverter
+    {
+        public static double ReadWorkedHours()
+        {
+            Console.Write("Podaj liczbę godzin: ");
+            var userInput = Console.ReadLine();
+            return double.TryParse(userInput, out var workedHours) && workedHours > 0 && workedHours < 300
+                ? workedHours
+                : throw new ArgumentException($"Niepoprawna wartość dla argumentu {workedHours}", nameof(workedHours));
+        }
+        public static double ReadHourlyFee()
+        {
+            Console.Write("Podaj stawkę godzinową (brutto w zł): ");
+            var userInput = Console.ReadLine();
+            return double.TryParse(userInput, out var hourlyFee) && hourlyFee > 0 && hourlyFee < 10000
+                ? hourlyFee
+                : throw new ArgumentException($"Niepoprawna wartość dla argumentu {hourlyFee}", nameof(hourlyFee));
+        }
+        public static Month ReadMonth()
+        {
+            Console.Write("Podaj numer miesiąca (1-12): ");
+            var userInput = Console.ReadLine();
+            var monthNumber = short.TryParse(userInput, out var workedMonth) && workedMonth > 0 && workedMonth < 13
+                ? workedMonth
+                : throw new ArgumentException($"Niepoprawna wartość dla argumentu {workedMonth}", nameof(workedMonth));
+            return (Month)monthNumber;
+        }
+    }
+    class MonthMaps
+    {
+        public static readonly IReadOnlyDictionary<Month, int> MonthWorkingHours = new Dictionary<Month, int>
+        {
+            {Month.Styczeń, 168},
+            {Month.Luty, 160},
+            {Month.Marzec, 176},
+            {Month.Kwiecień, 160},
+            {Month.Maj, 160},
+            {Month.Czerwiec, 168},
+            {Month.Lipiec, 176},
+            {Month.Sierpień, 176},
+            {Month.Wrzesień, 160},
+            {Month.Październik, 184},
+            {Month.Listopad, 168},
+            {Month.Grudzień, 152},
+        };
+    }
+    class Multipliers
+    {
+        public const float OverHoursMultiplayer = 1.5F;
+        public const float NetToGrossIncomeFactor = 0.75F;
+    }
+    class FeCalculator
+    {
+        public static double CalculateOverhoursAmount(Month workedMonth, double workedHours) =>
+            MonthMaps.MonthWorkingHours[workedMonth] < workedHours
+                ? workedHours - MonthMaps.MonthWorkingHours[workedMonth]
+                : 0;
+
+        public static double CalculateTotalNetIncome(double totalGrossIncome) =>
+            Math.Round(totalGrossIncome * Multipliers.NetToGrossIncomeFactor, 2);
+
+        public static double CalculateTotalGrossIncome(
+            double workedHours,
+            double hourlyFee,
+            double overHoursGrossIncome) =>
+            Math.Round(workedHours * hourlyFee + overHoursGrossIncome, 2);
+
+        public static double CalculateOverHoursNetIncome(double overHoursGrossIncome) =>
+            Math.Round(overHoursGrossIncome * Multipliers.NetToGrossIncomeFactor, 2);
+
+        public static double CalculateOverHoursGrossIncome(double overHoursAmount, double hourlyFee) =>
+            Math.Round(hourlyFee * overHoursAmount * Multipliers.OverHoursMultiplayer, 2);
+    }
+    class WorkingDaysFromConfigFile
+    {
 
     }
+    class ReportBuilder
+    {
+        public static string BuildIncomeMonthlyReport(
+           double workedHours,
+           Month workedMonth,
+           double hourlyFee,
+           double overHoursAmount,
+           double overHoursGrossIncome,
+           double overHoursNetIncome,
+           double totalGrossIncome,
+           double totalNetIncome)
+        {
+            var reportBuilder = new StringBuilder();
+            reportBuilder
+                .AppendLine(Environment.NewLine)
+                .AppendLine($"PODSUMOWANIE dla miesiąca {workedMonth.ToString()} :")
+                .AppendLine("------------------------------------------------------------------")
+                .AppendLine(
+                    $"Wymiar czasu pracy w tym miesiącu: {MonthMaps.MonthWorkingHours[workedMonth]}h, Przepracowano: {workedHours}h")
+                .AppendLine($"Stawka godzinowa (brutto): {hourlyFee}zł {Environment.NewLine}")
+                .AppendLine($"Liczba nadgodzin: {overHoursAmount}, wynagrodzenie brutto: {overHoursGrossIncome}zł")
+                .AppendLine($"Liczba nadgodzin: {overHoursAmount}, wynagrodzenie netto: {overHoursNetIncome}zł")
+                .AppendLine($"Wynagrodzenie całkowite brutto (podstawa + nadgodziny): {totalGrossIncome}zł")
+                .AppendLine($"Wynagrodzenie całkowite netto (podstawa + nadgodziny): {totalNetIncome}zł")
+                .AppendLine("------------------------------------------------------------------")
+                .AppendLine(Environment.NewLine);
+            return reportBuilder.ToString();
+        }
+    }
 }
-
-
