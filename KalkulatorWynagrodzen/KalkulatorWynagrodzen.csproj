@@ -48,10 +48,12 @@
   <ItemGroup>
     <Compile Include="ConfigurationFileInterpreter.cs" />
     <Compile Include="FeCalculator.cs" />
+    <Compile Include="Month.cs" />
     <Compile Include="Multipliers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportBuilder.cs" />
+    <Compile Include="TestFile.cs" />
     <Compile Include="UserInputConverter.cs" />
   </ItemGroup>
   <ItemGroup>
