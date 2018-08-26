@@ -6,7 +6,7 @@ namespace KalkulatorWynagrodzen
     public class FeCalculator
     {
         private readonly Dictionary<int, int> MonthsWorkingHours;
-         FeCalculator()
+        public FeCalculator()
         {
             MonthsWorkingHours = new ConfigurationFileInterpreter<Dictionary<int, int>>("MonthConfig.json")
                 .InterpretConfiguration();

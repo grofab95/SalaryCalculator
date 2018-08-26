@@ -8,7 +8,7 @@ namespace KalkulatorWynagrodzen
     public class ReportBuilder
     {
         private readonly Dictionary<int, int> MonthsWorkingHours;
-        ReportBuilder()
+        public ReportBuilder()
         {
             MonthsWorkingHours = new ConfigurationFileInterpreter<Dictionary<int, int>>("MonthConfig.json")
                 .InterpretConfiguration();
