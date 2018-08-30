@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+
 
 namespace KalkulatorWynagrodzen
 {
@@ -12,7 +14,7 @@ namespace KalkulatorWynagrodzen
                 .InterpretConfiguration();
         }
         public double CalculateOverhoursAmount(int workedMonth, double workedHours) =>
-            MonthsWorkingHours[workedMonth] < workedHours
+                MonthsWorkingHours[workedMonth] < workedHours
                 ? workedHours - MonthsWorkingHours[workedMonth]
                 : 0;
 

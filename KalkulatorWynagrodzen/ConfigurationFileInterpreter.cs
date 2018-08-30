@@ -3,7 +3,8 @@ using Newtonsoft.Json;
 
 namespace KalkulatorWynagrodzen
 {
-    public class ConfigurationFileInterpreter<T>// To są typy generyczne, umożliwiają pisanie "ogólnego" kodu, który nie zależy od typu. Będzie działać dla różnych klas.
+    public class ConfigurationFileInterpreter<T>// To są typy generyczne, umożliwiają pisanie "ogólnego" kodu, który nie zależy od typu. 
+        //Będzie działać dla różnych klas.
     {
         private readonly string _configurationFilePath;
         public ConfigurationFileInterpreter(string configurationFilePath)

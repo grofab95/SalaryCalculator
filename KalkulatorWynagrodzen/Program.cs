@@ -1,24 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace KalkulatorWynagrodzen
-{
-    class Program
+{ 
+    public class Program
     {
+        MonthsWorkingHours monthsWorkingHours = new MonthsWorkingHours(  ); // jakie wartości mam przekazać
+        var monthsWorkingHours = new ConfigurationFileInterpreter<Dictionary<int, int>>("MonthConfig.json")
+                .InterpretConfiguration();
+
+        // Pogubiłem się w tym momencie totalnie 
+
         static void Main()
         {
-            TestFile testResult = new TestFile();
-            int TestResult = testResult.VerifyFile();
-            if (TestResult == 0)
-            {
-                Console.ReadKey();
-            }
-            else
-            {
                 while (true)
                 {
                     try
                     {
-                        Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
+                    Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
                         // Read user data
                         var workedHours = UserInputConverter.ReadWorkedHours();
                         var workedMonth = UserInputConverter.ReadMonth();
@@ -53,8 +52,7 @@ namespace KalkulatorWynagrodzen
                         Console.WriteLine(
                             $"Wystąpił błąd, działanie aplikacji zostanie wznowione! Błąd: {ex.Message}{Environment.NewLine}");
                     }
-                }
-            }
+                }           
             
         }
     }

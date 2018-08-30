@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="ConfigurationFileInterpreter.cs" />
     <Compile Include="FeCalculator.cs" />
+    <Compile Include="InvalidMonthWorkingHoursConfiguration.cs" />
     <Compile Include="Month.cs" />
+    <Compile Include="MonthsWorkingHours.cs" />
     <Compile Include="Multipliers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
