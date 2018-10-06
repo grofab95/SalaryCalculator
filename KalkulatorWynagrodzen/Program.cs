@@ -1,59 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using FileTranslator;
+using SalaryCalculator;
 
-namespace KalkulatorWynagrodzen
-{ 
+namespace Console
+{   
     public class Program
     {
-        MonthsWorkingHours monthsWorkingHours = new MonthsWorkingHours(  ); // jakie wartości mam przekazać
-        var monthsWorkingHours = new ConfigurationFileInterpreter<Dictionary<int, int>>("MonthConfig.json")
-                .InterpretConfiguration();
-
-        // Pogubiłem się w tym momencie totalnie 
-
         static void Main()
         {
-                while (true)
+            while (true)
+            {
+                try
                 {
-                    try
-                    {
-                    Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
-                        // Read user data
-                        var workedHours = UserInputConverter.ReadWorkedHours();
-                        var workedMonth = UserInputConverter.ReadMonth();
-                        var hourlyFee = UserInputConverter.ReadHourlyFee();
-                        // Calculate
-                        FeCalculator OverHoursAmount = new FeCalculator();
-                        FeCalculator OverHoursGrossIncome = new FeCalculator();
-                        FeCalculator OverHoursNetIncomeO = new FeCalculator();
-                        FeCalculator TotalGrossIncome = new FeCalculator();
-                        FeCalculator TotalNetIncome = new FeCalculator();
-                        var overHoursAmount = OverHoursAmount.CalculateOverhoursAmount(workedMonth, workedHours);
-                        var overHoursGrossIncome = OverHoursGrossIncome.CalculateOverHoursGrossIncome(overHoursAmount, hourlyFee);
-                        var overHoursNetIncome = OverHoursNetIncomeO.CalculateOverHoursNetIncome(overHoursGrossIncome);
-                        var totalGrossIncome = TotalGrossIncome.CalculateTotalGrossIncome(workedHours, hourlyFee, overHoursGrossIncome);
-                        var totalNetIncome = TotalNetIncome.CalculateTotalNetIncome(totalGrossIncome);
-                        // Report
-                        ReportBuilder Report = new ReportBuilder();
-                        var report = Report.BuildIncomeMonthlyReport(
-                                workedHours,
-                                workedMonth,
-                                hourlyFee,
-                                overHoursAmount,
-                                overHoursGrossIncome,
-                                overHoursNetIncome,
-                                totalGrossIncome,
-                                totalNetIncome
-                            );
-                        Console.WriteLine(report);
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        Console.WriteLine(
-                            $"Wystąpił błąd, działanie aplikacji zostanie wznowione! Błąd: {ex.Message}{Environment.NewLine}");
-                    }
-                }           
-            
+                    System.Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");                    
+                    var monthsWorkingHoursConfiguration
+                        = JsonFileTranslator<Dictionary<int, int>>.Translate("MonthConfig.json");
+                    var monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
+                    // Read user data
+                    var workedHours = UserInputConsoleReader.ReadWorkedHours();
+                    var workedMonth = UserInputConsoleReader.ReadMonth();
+                    var hourlyFee = UserInputConsoleReader.ReadHourlyFee();
+                    var calculator = new Calculator(monthsWorkingHours);
+                    var overHoursAmount = calculator.CalculateOverhoursAmount(workedMonth, workedHours);
+                    var overHoursGrossIncome = calculator.CalculateOverHoursGrossIncome(overHoursAmount, hourlyFee);
+                    var overHoursNetIncome = calculator.CalculateOverHoursNetIncome(overHoursGrossIncome);
+                    var totalGrossIncome = calculator.CalculateTotalGrossIncome(workedHours, hourlyFee, overHoursGrossIncome);
+                    var totalNetIncome = calculator.CalculateTotalNetIncome(totalGrossIncome);
+                    // Report
+                    var reportBuilder = new ReportBuilder(monthsWorkingHours);
+                    var report = reportBuilder.BuildIncomeMonthlyReport(
+                            workedHours,
+                            workedMonth,
+                            hourlyFee,
+                            overHoursAmount,
+                            overHoursGrossIncome,
+                            overHoursNetIncome,
+                            totalGrossIncome,
+                            totalNetIncome
+                        );
+                    System.Console.WriteLine(report);
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(
+                        $"Wystąpił błąd, działanie aplikacji zostanie zakończone! Błąd: {ex.Message}{Environment.NewLine}");
+                    System.Console.ReadKey();
+                    break;
+                }
+            }
         }
     }
 }

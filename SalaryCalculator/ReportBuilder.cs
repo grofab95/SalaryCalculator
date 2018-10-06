@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
-
-namespace KalkulatorWynagrodzen
+namespace SalaryCalculator
 {
     public class ReportBuilder
     {
-        private readonly Dictionary<int, int> MonthsWorkingHours;
-        public ReportBuilder()
+        private readonly MonthsWorkingHours _monthsWorkingHours;
+
+        public ReportBuilder(MonthsWorkingHours monthsWorkingHours)
         {
-            MonthsWorkingHours = new ConfigurationFileInterpreter<Dictionary<int, int>>("MonthConfig.json")
-                .InterpretConfiguration();
+            _monthsWorkingHours = monthsWorkingHours;
         }
+
         public string BuildIncomeMonthlyReport(
            double workedHours,
            int workedMonth,
@@ -23,14 +22,13 @@ namespace KalkulatorWynagrodzen
            double totalGrossIncome,
            double totalNetIncome)
         {
-            Month GetMonthName = new Month();
             var reportBuilder = new StringBuilder();
             reportBuilder
                 .AppendLine(Environment.NewLine)
-                .AppendLine($"PODSUMOWANIE dla miesiąca {GetMonthName.MonthName(workedMonth)} :")
+                .AppendLine($"PODSUMOWANIE dla miesiąca {Month.NumberToName(workedMonth)} :")
                 .AppendLine("------------------------------------------------------------------")
                 .AppendLine(
-                    $"Wymiar czasu pracy w tym miesiącu: {MonthsWorkingHours[workedMonth]}h, Przepracowano: {workedHours}h")
+                    $"Wymiar czasu pracy w tym miesiącu: {_monthsWorkingHours[workedMonth]}h, Przepracowano: {workedHours}h")
                 .AppendLine($"Stawka godzinowa (brutto): {hourlyFee}zł {Environment.NewLine}")
                 .AppendLine($"Liczba nadgodzin: {overHoursAmount}, wynagrodzenie brutto: {overHoursGrossIncome}zł")
                 .AppendLine($"Liczba nadgodzin: {overHoursAmount}, wynagrodzenie netto: {overHoursNetIncome}zł")
