@@ -9,8 +9,8 @@
     <ProjectGuid>{33ADD941-FF04-4AF6-BE4E-BB40B29FFE0D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SalaryCalculator.Tests2</RootNamespace>
-    <AssemblyName>SalaryCalculator.Tests2</AssemblyName>
+    <RootNamespace>SalaryCalculator.Tests</RootNamespace>
+    <AssemblyName>SalaryCalculator.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -58,10 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorTests.cs" />
+    <Compile Include="InputValidationsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MonthsWorkingHoursTests.cs" />
     <None Include="packages.config" />
+    <None Include="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />

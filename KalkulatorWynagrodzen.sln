@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalaryCalculator", "SalaryC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileTranslator", "ConfigurationFileTranslator\FileTranslator.csproj", "{5D23FE78-E6AF-4A46-8BB4-04D5D760AEB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Tests2", "SalaryCalculator.Tests2\SalaryCalculator.Tests2.csproj", "{33ADD941-FF04-4AF6-BE4E-BB40B29FFE0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Tests", "SalaryCalculator.Tests2\SalaryCalculator.Tests.csproj", "{33ADD941-FF04-4AF6-BE4E-BB40B29FFE0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

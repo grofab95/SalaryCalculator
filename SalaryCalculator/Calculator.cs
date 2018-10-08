@@ -20,8 +20,10 @@ namespace SalaryCalculator
                 : 0;
         }
 
-        public double CalculateTotalNetIncome(double totalGrossIncome) =>
-            Math.Round(totalGrossIncome * Multipliers.NetToGrossIncomeFactor, 2);
+        public double CalculateTotalNetIncome(double totalGrossIncome)
+        {
+            return Math.Round(totalGrossIncome * Multipliers.NetToGrossIncomeFactor, 2);
+        }
 
         public double CalculateTotalGrossIncome(
          double workedHours,
