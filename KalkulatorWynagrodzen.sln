@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileTranslator", "Configura
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Tests", "SalaryCalculator.Tests2\SalaryCalculator.Tests.csproj", "{33ADD941-FF04-4AF6-BE4E-BB40B29FFE0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console.Tests", "Console.Tests\Console.Tests.csproj", "{A0F4B775-F559-4907-AB55-ABFC892F693A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{33ADD941-FF04-4AF6-BE4E-BB40B29FFE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33ADD941-FF04-4AF6-BE4E-BB40B29FFE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33ADD941-FF04-4AF6-BE4E-BB40B29FFE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0F4B775-F559-4907-AB55-ABFC892F693A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0F4B775-F559-4907-AB55-ABFC892F693A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0F4B775-F559-4907-AB55-ABFC892F693A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0F4B775-F559-4907-AB55-ABFC892F693A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

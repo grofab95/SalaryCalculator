@@ -2,7 +2,7 @@
 
 namespace Console
 {
-    static class StringParser
+    public static class StringParser
     {
         public static double ParseToDoubleReadWorkedHours(string userInput) => 
             double.Parse(userInput ?? throw new InvalidOperationException());
