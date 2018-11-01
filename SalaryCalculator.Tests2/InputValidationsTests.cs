@@ -22,9 +22,9 @@ namespace SalaryCalculator.Tests2
         [Theory]
         [InlineData(0)]
         [InlineData(13)]
-        public void ValidateMonth_For_InvalidMonth_Throws_InvalidMonth(int monthnumber)
+        public void ValidateMonth_For_InvalidMonth_Throws_InvalidMonth(int monthNumber)
         {
-            Assert.Throws<InvalidMonth>(() => InputValidations.ValidateMonth(monthnumber));
+            Assert.Throws<InvalidMonth>(() => InputValidations.ValidateMonth(monthNumber));
         }
         [Theory]
         [InlineData(-10)]

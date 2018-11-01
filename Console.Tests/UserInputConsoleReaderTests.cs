@@ -12,9 +12,7 @@ namespace Console.Tests
         [InlineData("strytdfy")]
         public void ValidateReadWorkedHours_For_InvalidUserInput_Throws_InvalidOperationException(string userInput)
         {
-            var exception = Record.Exception(() => StringParser.ParseToDoubleReadWorkedHours(userInput));
-            Assert.NotNull(exception);
-            Assert.IsType<FormatException>(exception);
+            Assert.Throws<FormatException> (() => Parser.ParseStringToDouble(userInput));
         }
         [Theory]
         [InlineData("@")]
@@ -22,9 +20,7 @@ namespace Console.Tests
         [InlineData("gifgker")]
         public void ValidateReadHourlyFee_For_InvalidUserInput_Throws_InvalidOperationException(string userInput)
         {
-            var exception = Record.Exception(() => StringParser.ParseToDoubleReadHourlyFee(userInput));
-            Assert.NotNull(exception);
-            Assert.IsType<FormatException>(exception);
+            Assert.Throws<FormatException>(() => Parser.ParseStringToDouble(userInput));
         }
         [Theory]
         [InlineData("%")]
@@ -32,9 +28,7 @@ namespace Console.Tests
         [InlineData("tingnfs")]
         public void ValidateReadMonth_For_InvalidUserInput_Throws_InvalidOperationException(string userInput)
         {
-            var exception = Record.Exception(() => StringParser.ParseToIntReadMonth(userInput));
-            Assert.NotNull(exception);
-            Assert.IsType<FormatException>(exception);
+            Assert.Throws<FormatException>(() => Parser.ParseStringToInt(userInput));
         }
     }
 }

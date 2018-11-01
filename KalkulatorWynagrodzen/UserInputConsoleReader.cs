@@ -8,19 +8,19 @@ namespace Console
         {
             System.Console.Write("Podaj liczbę godzin: ");
             var userInput = System.Console.ReadLine();
-            return StringParser.ParseToDoubleReadWorkedHours(userInput);
+            return Parser.ParseStringToDouble(userInput);
         }
         public static double ReadHourlyFee()
         {
             System.Console.Write("Podaj stawkę godzinową (brutto w zł): ");
             var userInput = System.Console.ReadLine();
-            return StringParser.ParseToDoubleReadHourlyFee(userInput);
+            return Parser.ParseStringToDouble(userInput);
         }
         public static int ReadMonth()
         {
             System.Console.Write("Podaj numer miesiąca (1-12): ");
             var userInput = System.Console.ReadLine();
-            return StringParser.ParseToIntReadMonth(userInput);
+            return Parser.ParseStringToInt(userInput);
         }
     }
 }

@@ -25,8 +25,8 @@ namespace SalaryCalculator
             var reportBuilder = new StringBuilder();
             reportBuilder
                 .AppendLine(Environment.NewLine)
-                .AppendLine($"PODSUMOWANIE dla miesiąca {Month.NumberToName(workedMonth)} :")
-                .AppendLine("------------------------------------------------------------------")
+                .AppendLine($"Podsumowanie dla miesiąca {Month.NumberToName(workedMonth)} :")
+                .AppendLine("")
                 .AppendLine(
                     $"Wymiar czasu pracy w tym miesiącu: {_monthsWorkingHours[workedMonth]}h, Przepracowano: {workedHours}h")
                 .AppendLine($"Stawka godzinowa (brutto): {hourlyFee}zł {Environment.NewLine}")
@@ -34,7 +34,7 @@ namespace SalaryCalculator
                 .AppendLine($"Liczba nadgodzin: {overHoursAmount}, wynagrodzenie netto: {overHoursNetIncome}zł")
                 .AppendLine($"Wynagrodzenie całkowite brutto (podstawa + nadgodziny): {totalGrossIncome}zł")
                 .AppendLine($"Wynagrodzenie całkowite netto (podstawa + nadgodziny): {totalNetIncome}zł")
-                .AppendLine("------------------------------------------------------------------")
+                .AppendLine("")
                 .AppendLine(Environment.NewLine);
             return reportBuilder.ToString();
         }
