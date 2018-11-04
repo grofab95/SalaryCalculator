@@ -77,7 +77,6 @@ namespace SalaryCalculator.Dekstop
             WriteTextBoxToMonthConfigFile(_MonthConfigFilePath);
             if (TryLoadMonthsWorkingHoursConfiguration())
             {
-                WriteTextBoxToMonthConfigFile(_MonthConfigFilePath);
                 WriteTextBoxToMonthConfigFile(_MonthConfigLastGoodConfigurationFilePath);
                 WriteMonthConfigFileToTextBox();
                 MessageBox.Show("Zmiany zostały zapisane!\n\nNastąpi restart programu.", "Info");
