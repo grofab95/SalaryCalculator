@@ -56,7 +56,7 @@
     <None Include="MonthConfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MonthConfigDefault.json">
+    <None Include="MonthConfigLastGoodConfiguration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
