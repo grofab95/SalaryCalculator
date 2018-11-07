@@ -2,22 +2,20 @@
 
 public class Program
 {
-    public static bool ESC { get; private set; }
-
     public static void Main()
     {
-        int numer_miesiąca;
-        int liczba_nadgodzin;
+        var numer_miesiąca = 0;
+        var liczba_nadgodzin = 0.0;
         double stawka;
         double wynagrodzenie_brutto;
         double wynagrodzenie_netto;
         string[] miesiace = { "styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień" };
         int[] czas_pracy = { 168, 160, 176, 160, 160, 168, 176, 176, 160, 184, 168, 152 };
         Console.WriteLine("OBLICZANIE WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
-        do
+        while (true)
         {
             Console.Write("Podaj liczbę nadgodzin: ");
-            String line = Console.ReadLine();
+            var line = Console.ReadLine();
             try
             {
                 liczba_nadgodzin = Int32.Parse(line);
@@ -84,7 +82,6 @@ public class Program
                 Console.WriteLine("------------------------------------------------------------------\n");
             }
         }
-        while (1 > 0);
 
     }
 }
