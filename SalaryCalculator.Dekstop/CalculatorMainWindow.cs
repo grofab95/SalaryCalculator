@@ -81,11 +81,6 @@ namespace SalaryCalculator.Dekstop
             RunMonthConfigEditorWindow(2);
         }
 
-        private void test()
-        {
-            var test = 1;
-        }
-
         private void TestNewMonthConfiginInMainWindow(MonthConfigEditorWindow obj)
         {
             var ValidConfiguration = 1;
