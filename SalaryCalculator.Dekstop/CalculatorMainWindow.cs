@@ -7,16 +7,21 @@ using FileTranslator;
 namespace SalaryCalculator.Dekstop
 {
     public partial class CalculatorMainWindow : Form
-    {
+    {        
         private MonthsWorkingHours _monthsWorkingHours;
         public CalculatorMainWindow()
+        {
+            LoadMonthConfig();
+            InitializeComponent();
+            MonthSelect_ComboBox.SelectedIndex = 0;
+        }     
+        
+        private void LoadMonthConfig()
         {
             var monthsWorkingHoursConfiguration
                            = JsonFileTranslator<Dictionary<int, int>>.Translate("MonthConfig.json");
             _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
-            InitializeComponent();
-            MonthSelect_ComboBox.SelectedIndex = 0;
-        }        
+        }
 
         private void Calculate_Button_Click(object sender, EventArgs e)
         {
@@ -55,7 +60,7 @@ namespace SalaryCalculator.Dekstop
         private void About_StripMenu_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Autor: Fabian Grochla \n" +
-                            "Wersja: 1.1");
+                            "Wersja: 1.2");
         }
 
         private void Exit_StripMenu_Click(object sender, EventArgs e)
@@ -63,12 +68,44 @@ namespace SalaryCalculator.Dekstop
             Application.Exit();
         }
 
-        private void MonthConfig_StripMenu_Click(object sender, EventArgs e)
+        private void RunMonthConfigEditorWindow(int status)
         {
-            var monthConfigEditorWindow = new MonthConfigEditorWindow();
+            var monthConfigEditorWindow = new MonthConfigEditorWindow(_monthsWorkingHours, status);
+            monthConfigEditorWindow.TestNewMonthConfiginInMainWindow
+                += new MonthConfigEditorWindow.methodHandler(TestNewMonthConfiginInMainWindow);
             monthConfigEditorWindow.ShowDialog();
         }
-            
+
+        private void MonthConfig_StripMenu_Click(object sender, EventArgs e)
+        {
+            RunMonthConfigEditorWindow(2);
+        }
+
+        private void test()
+        {
+            var test = 1;
+        }
+
+        private void TestNewMonthConfiginInMainWindow(MonthConfigEditorWindow obj)
+        {
+            var ValidConfiguration = 1;
+            obj.Close();
+            try
+            {
+                LoadMonthConfig();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"{e.Message}", "Uwaga!");
+                RunMonthConfigEditorWindow(0);
+                ValidConfiguration = 0;
+            }
+            if (ValidConfiguration == 1)
+            {
+                RunMonthConfigEditorWindow(1);
+            }
+        }
+
 
         private void MonthConfigV2_StripMenu_Click(object sender, EventArgs e)
         {

@@ -8,33 +8,34 @@ namespace SalaryCalculator.Dekstop
 {
     public partial class MonthConfigEditorWindow : Form
     {
+        public delegate void methodHandler(MonthConfigEditorWindow obj);
+        public methodHandler TestNewMonthConfiginInMainWindow;
+
         private MonthsWorkingHours _monthsWorkingHours;
-
         private string _MonthConfigFilePath = "MonthConfig.json";
-        private string _MonthConfigLastGoodConfigurationFilePath = "MonthConfigLastGoodConfiguration.json";
+        private string _MonthConfigLastGoodConfigurationFilePath = "MonthConfigLastGoodConfiguration.json";  
 
-        public MonthConfigEditorWindow()
-        {            
-            TryLoadMonthsWorkingHoursConfiguration();            
+        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, int status)
+        {
+            _monthsWorkingHours = monthsWorkingHours;
             InitializeComponent();
             WriteMonthConfigFileToTextBox();
-        }
+            RunSelectedMethodBasedOnStatusFromMainWindow(status);
+        }              
 
-        private bool TryLoadMonthsWorkingHoursConfiguration()
+        private void RunSelectedMethodBasedOnStatusFromMainWindow(int status)
         {
-            try
+            switch (status)
             {
-                var monthsWorkingHoursConfiguration
-                                   = JsonFileTranslator<Dictionary<int, int>>.Translate(_MonthConfigFilePath);
-                _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
+                case 0:
+                    RestoreLastGoodConfigurationOfMonthConfig();
+                    break;
+                case 1:
+                    SaveNewValueToMonthConfig();
+                    break;
+                default:
+                    break;
             }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e.Message}", "UWAGA!");
-                RestoreLastGoodConfigurationOfMonthConfig();
-                return false;
-            }
-            return true;
         }
 
         private void WriteMonthConfigFileToTextBox()
@@ -61,7 +62,7 @@ namespace SalaryCalculator.Dekstop
         {            
             using (StreamWriter newTask = new StreamWriter(_MonthConfigFilePath, false))
             {
-                newTask.WriteLine(ReadSelectedFile(_MonthConfigLastGoodConfigurationFilePath));
+                newTask.WriteLine(ReadSelectedFile(_MonthConfigLastGoodConfigurationFilePath));              
             }
             WriteMonthConfigFileToTextBox();
         }
@@ -72,23 +73,24 @@ namespace SalaryCalculator.Dekstop
             return monthConfigFileValue != MonthConfigFile_TextBox.Text ? true : false;
         }
 
-        private void SaveNewValueToMonthConfigs()
+        private void CheckCorrectMonthConfigInMainWindow()
         {
             WriteTextBoxToMonthConfigFile(_MonthConfigFilePath);
-            if (TryLoadMonthsWorkingHoursConfiguration())
-            {
-                WriteTextBoxToMonthConfigFile(_MonthConfigLastGoodConfigurationFilePath);
-                WriteMonthConfigFileToTextBox();
-                MessageBox.Show("Zmiany zostały zapisane!\n\nNastąpi restart programu.", "Info");
-                Application.Restart();
-            }
+            TestNewMonthConfiginInMainWindow?.Invoke(this);
         }
+
+        private void SaveNewValueToMonthConfig()
+        {
+            WriteTextBoxToMonthConfigFile(_MonthConfigLastGoodConfigurationFilePath);
+            WriteMonthConfigFileToTextBox();
+            MessageBox.Show("Zmiany zostały zapisane!", "Info");
+        }
+
         private void Save_StripMenu_Click(object sender, EventArgs e)
-        {             
-            
+        {           
             if (CheckIfChangesHaveBeenMadeInTextBox())
             {
-                SaveNewValueToMonthConfigs();
+                CheckCorrectMonthConfigInMainWindow();
             }
             else
             {
@@ -103,7 +105,7 @@ namespace SalaryCalculator.Dekstop
                 if (MessageBox.Show("Wprowadzono zmiany, czy chcesz je zapisać?", "Uwaga!", 
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    SaveNewValueToMonthConfigs();
+                    CheckCorrectMonthConfigInMainWindow();
                 }
                 else
                 {

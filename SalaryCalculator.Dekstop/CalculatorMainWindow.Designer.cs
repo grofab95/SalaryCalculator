@@ -65,7 +65,7 @@
             // 
             // Calculate_Button
             // 
-            this.Calculate_Button.Location = new System.Drawing.Point(275, 195);
+            this.Calculate_Button.Location = new System.Drawing.Point(275, 202);
             this.Calculate_Button.Name = "Calculate_Button";
             this.Calculate_Button.Size = new System.Drawing.Size(200, 50);
             this.Calculate_Button.TabIndex = 4;
