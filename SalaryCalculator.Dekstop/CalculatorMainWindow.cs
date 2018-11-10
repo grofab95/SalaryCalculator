@@ -68,7 +68,7 @@ namespace SalaryCalculator.Dekstop
             Application.Exit();
         }
 
-        private void RunMonthConfigEditorWindow(int status)
+        private void RunMonthConfigEditorWindow(string status)
         {
             var monthConfigEditorWindow = new MonthConfigEditorWindow(_monthsWorkingHours, status);
             monthConfigEditorWindow.TestNewMonthConfiginInMainWindow
@@ -78,7 +78,7 @@ namespace SalaryCalculator.Dekstop
 
         private void MonthConfig_StripMenu_Click(object sender, EventArgs e)
         {
-            RunMonthConfigEditorWindow(2);
+            RunMonthConfigEditorWindow("normal_start");
         }
 
         private void TestNewMonthConfiginInMainWindow(MonthConfigEditorWindow obj)
@@ -92,12 +92,12 @@ namespace SalaryCalculator.Dekstop
             catch (Exception e)
             {
                 MessageBox.Show($"{e.Message}", "Uwaga!");
-                RunMonthConfigEditorWindow(0);
+                RunMonthConfigEditorWindow("bad_MonthConfig");
                 ValidConfiguration = 0;
             }
             if (ValidConfiguration == 1)
             {
-                RunMonthConfigEditorWindow(1);
+                RunMonthConfigEditorWindow("good_MonthConfig");
             }
         }
 

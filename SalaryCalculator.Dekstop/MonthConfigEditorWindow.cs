@@ -15,7 +15,7 @@ namespace SalaryCalculator.Dekstop
         private string _MonthConfigFilePath = "MonthConfig.json";
         private string _MonthConfigLastGoodConfigurationFilePath = "MonthConfigLastGoodConfiguration.json";  
 
-        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, int status)
+        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, string status)
         {
             _monthsWorkingHours = monthsWorkingHours;
             InitializeComponent();
@@ -23,14 +23,14 @@ namespace SalaryCalculator.Dekstop
             RunSelectedMethodBasedOnStatusFromMainWindow(status);
         }              
 
-        private void RunSelectedMethodBasedOnStatusFromMainWindow(int status)
+        private void RunSelectedMethodBasedOnStatusFromMainWindow(string status)
         {
             switch (status)
             {
-                case 0:
+                case "bad_MonthConfig":
                     RestoreLastGoodConfigurationOfMonthConfig();
                     break;
-                case 1:
+                case "good_MonthConfig":
                     SaveNewValueToMonthConfig();
                     break;
                 default:
