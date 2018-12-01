@@ -31,17 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalculatorReportWindow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.BackToMainWindow_Button = new System.Windows.Forms.Button();
-            this.Report_Label = new System.Windows.Forms.Label();
+            this.report_textBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.report_textBox);
             this.panel1.Controls.Add(this.BackToMainWindow_Button);
-            this.panel1.Controls.Add(this.Report_Label);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(670, 359);
+            this.panel1.Size = new System.Drawing.Size(622, 308);
             this.panel1.TabIndex = 7;
             // 
             // BackToMainWindow_Button
@@ -54,21 +54,22 @@
             this.BackToMainWindow_Button.UseVisualStyleBackColor = true;
             this.BackToMainWindow_Button.Click += new System.EventHandler(this.BackToMainWindow_Button_Click);
             // 
-            // Report_Label
+            // report_textBox
             // 
-            this.Report_Label.AutoSize = true;
-            this.Report_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Report_Label.Location = new System.Drawing.Point(70, 30);
-            this.Report_Label.Name = "Report_Label";
-            this.Report_Label.Size = new System.Drawing.Size(108, 22);
-            this.Report_Label.TabIndex = 8;
-            this.Report_Label.Text = "ReportLabel";
+            this.report_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.report_textBox.Location = new System.Drawing.Point(93, 32);
+            this.report_textBox.Multiline = true;
+            this.report_textBox.Name = "report_textBox";
+            this.report_textBox.ReadOnly = true;
+            this.report_textBox.Size = new System.Drawing.Size(515, 258);
+            this.report_textBox.TabIndex = 16;
+            this.report_textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // CalculatorReportWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 379);
+            this.ClientSize = new System.Drawing.Size(645, 332);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -84,7 +85,7 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label Report_Label;
         private System.Windows.Forms.Button BackToMainWindow_Button;
+        private System.Windows.Forms.TextBox report_textBox;
     }
 }

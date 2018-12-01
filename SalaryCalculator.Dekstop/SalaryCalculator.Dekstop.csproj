@@ -61,6 +61,12 @@
     <Compile Include="CalculatorReportWindow.Designer.cs">
       <DependentUpon>CalculatorReportWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageBoxForEditorV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageBoxForEditorV2.Designer.cs">
+      <DependentUpon>MessageBoxForEditorV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonthConfigEditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <EmbeddedResource Include="CalculatorReportWindow.resx">
       <DependentUpon>CalculatorReportWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MessageBoxForEditorV2.resx">
+      <DependentUpon>MessageBoxForEditorV2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MonthConfigEditorWindow.resx">
       <DependentUpon>MonthConfigEditorWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +104,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -118,6 +128,10 @@
     <ProjectReference Include="..\KalkulatorWynagrodzen\Console.csproj">
       <Project>{4838d048-9948-4204-9127-5662fb22a5d4}</Project>
       <Name>Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ParsingUtilities\ParsingUtilities.csproj">
+      <Project>{e78628d3-a11d-45a4-92ba-82beb6131226}</Project>
+      <Name>ParsingUtilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\SalaryCalculator\SalaryCalculator.csproj">
       <Project>{70633d9e-19a7-4dff-8fb7-69b04ca6cbf3}</Project>

@@ -85,6 +85,10 @@
       <Project>{4838d048-9948-4204-9127-5662fb22a5d4}</Project>
       <Name>Console</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ParsingUtilities\ParsingUtilities.csproj">
+      <Project>{e78628d3-a11d-45a4-92ba-82beb6131226}</Project>
+      <Name>ParsingUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SalaryCalculator\SalaryCalculator.csproj">
       <Project>{70633d9e-19a7-4dff-8fb7-69b04ca6cbf3}</Project>
       <Name>SalaryCalculator</Name>

@@ -102,27 +102,11 @@
             // 
             // MonthSelect_ComboBox
             // 
-            this.MonthSelect_ComboBox.AllowDrop = true;
-            this.MonthSelect_ComboBox.BackColor = System.Drawing.SystemColors.Info;
-            this.MonthSelect_ComboBox.CausesValidation = false;
             this.MonthSelect_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.MonthSelect_ComboBox.FormattingEnabled = true;
-            this.MonthSelect_ComboBox.Items.AddRange(new object[] {
-            "Styczeń",
-            "Luty",
-            "Marzec",
-            "Kwiecień",
-            "Maj",
-            "Czerwiec",
-            "Lipiec",
-            "Sierpień",
-            "Wrzesień",
-            "Październik",
-            "Listopad",
-            "Grudzień"});
-            this.MonthSelect_ComboBox.Location = new System.Drawing.Point(17, 42);
+            this.MonthSelect_ComboBox.Location = new System.Drawing.Point(25, 44);
             this.MonthSelect_ComboBox.Name = "MonthSelect_ComboBox";
-            this.MonthSelect_ComboBox.Size = new System.Drawing.Size(166, 21);
+            this.MonthSelect_ComboBox.Size = new System.Drawing.Size(134, 21);
             this.MonthSelect_ComboBox.TabIndex = 0;
             // 
             // groupBox1
@@ -223,7 +207,6 @@
         
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox HourlyFee_TextBox;
-        private System.Windows.Forms.ComboBox MonthSelect_ComboBox;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -236,6 +219,7 @@
         private System.Windows.Forms.ToolStripMenuItem MonthConfig_StripMenu;
         private System.Windows.Forms.ToolStripMenuItem MonthConfigV2_StripMenu;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ComboBox MonthSelect_ComboBox;
     }
 }
 

@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Save_StripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.Exit_StripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Reset_StripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,6 +60,7 @@
             this.February_textBox = new System.Windows.Forms.TextBox();
             this.January_textBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -68,10 +70,11 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Save_StripMenu,
-            this.Exit_StripMenu});
+            this.Exit_StripMenu,
+            this.Reset_StripMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(329, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(292, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -88,6 +91,13 @@
             this.Exit_StripMenu.Size = new System.Drawing.Size(62, 20);
             this.Exit_StripMenu.Text = "Zamknij";
             this.Exit_StripMenu.Click += new System.EventHandler(this.Exit_StripMenu_Click);
+            // 
+            // Reset_StripMenu
+            // 
+            this.Reset_StripMenu.Name = "Reset_StripMenu";
+            this.Reset_StripMenu.Size = new System.Drawing.Size(47, 20);
+            this.Reset_StripMenu.Text = "Reset";
+            this.Reset_StripMenu.Click += new System.EventHandler(this.Reset_StripMenuItem_Click);
             // 
             // label2
             // 
@@ -269,9 +279,11 @@
             this.tableLayoutPanel2.Controls.Add(this.March_textBox, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.February_textBox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.January_textBox, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 0, 12);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 13);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(221, 50);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 12;
+            this.tableLayoutPanel2.RowCount = 14;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -284,120 +296,144 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(59, 362);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(48, 362);
             this.tableLayoutPanel2.TabIndex = 14;
             // 
             // December_textBox
             // 
             this.December_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.December_textBox.Location = new System.Drawing.Point(3, 333);
+            this.December_textBox.MaxLength = 3;
             this.December_textBox.Name = "December_textBox";
-            this.December_textBox.Size = new System.Drawing.Size(53, 26);
+            this.December_textBox.Size = new System.Drawing.Size(41, 26);
             this.December_textBox.TabIndex = 11;
             // 
             // November_textBox
             // 
             this.November_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.November_textBox.Location = new System.Drawing.Point(3, 303);
+            this.November_textBox.MaxLength = 3;
             this.November_textBox.Name = "November_textBox";
-            this.November_textBox.Size = new System.Drawing.Size(53, 26);
+            this.November_textBox.Size = new System.Drawing.Size(41, 26);
             this.November_textBox.TabIndex = 10;
             // 
             // October_textBox
             // 
             this.October_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.October_textBox.Location = new System.Drawing.Point(3, 273);
+            this.October_textBox.MaxLength = 3;
             this.October_textBox.Name = "October_textBox";
-            this.October_textBox.Size = new System.Drawing.Size(53, 26);
+            this.October_textBox.Size = new System.Drawing.Size(41, 26);
             this.October_textBox.TabIndex = 9;
             // 
             // September_textBox
             // 
             this.September_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.September_textBox.Location = new System.Drawing.Point(3, 243);
+            this.September_textBox.MaxLength = 3;
             this.September_textBox.Name = "September_textBox";
-            this.September_textBox.Size = new System.Drawing.Size(53, 26);
+            this.September_textBox.Size = new System.Drawing.Size(41, 26);
             this.September_textBox.TabIndex = 8;
             // 
             // August_textBox
             // 
             this.August_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.August_textBox.Location = new System.Drawing.Point(3, 213);
+            this.August_textBox.MaxLength = 3;
             this.August_textBox.Name = "August_textBox";
-            this.August_textBox.Size = new System.Drawing.Size(53, 26);
+            this.August_textBox.Size = new System.Drawing.Size(41, 26);
             this.August_textBox.TabIndex = 7;
             // 
             // July_textBox
             // 
             this.July_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.July_textBox.Location = new System.Drawing.Point(3, 183);
+            this.July_textBox.MaxLength = 3;
             this.July_textBox.Name = "July_textBox";
-            this.July_textBox.Size = new System.Drawing.Size(53, 26);
+            this.July_textBox.Size = new System.Drawing.Size(41, 26);
             this.July_textBox.TabIndex = 6;
             // 
             // June_textBox
             // 
             this.June_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.June_textBox.Location = new System.Drawing.Point(3, 153);
+            this.June_textBox.MaxLength = 3;
             this.June_textBox.Name = "June_textBox";
-            this.June_textBox.Size = new System.Drawing.Size(53, 26);
+            this.June_textBox.Size = new System.Drawing.Size(41, 26);
             this.June_textBox.TabIndex = 5;
             // 
             // May_textBox
             // 
             this.May_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.May_textBox.Location = new System.Drawing.Point(3, 123);
+            this.May_textBox.MaxLength = 3;
             this.May_textBox.Name = "May_textBox";
-            this.May_textBox.Size = new System.Drawing.Size(53, 26);
+            this.May_textBox.Size = new System.Drawing.Size(41, 26);
             this.May_textBox.TabIndex = 4;
             // 
             // April_textBox
             // 
             this.April_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.April_textBox.Location = new System.Drawing.Point(3, 93);
+            this.April_textBox.MaxLength = 3;
             this.April_textBox.Name = "April_textBox";
-            this.April_textBox.Size = new System.Drawing.Size(53, 26);
+            this.April_textBox.Size = new System.Drawing.Size(41, 26);
             this.April_textBox.TabIndex = 3;
             // 
             // March_textBox
             // 
             this.March_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.March_textBox.Location = new System.Drawing.Point(3, 63);
+            this.March_textBox.MaxLength = 3;
             this.March_textBox.Name = "March_textBox";
-            this.March_textBox.Size = new System.Drawing.Size(53, 26);
+            this.March_textBox.Size = new System.Drawing.Size(41, 26);
             this.March_textBox.TabIndex = 2;
             // 
             // February_textBox
             // 
             this.February_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.February_textBox.Location = new System.Drawing.Point(3, 33);
+            this.February_textBox.MaxLength = 3;
             this.February_textBox.Name = "February_textBox";
-            this.February_textBox.Size = new System.Drawing.Size(53, 26);
+            this.February_textBox.Size = new System.Drawing.Size(41, 26);
             this.February_textBox.TabIndex = 1;
             // 
             // January_textBox
             // 
+            this.January_textBox.BackColor = System.Drawing.SystemColors.Window;
             this.January_textBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.January_textBox.Location = new System.Drawing.Point(3, 3);
+            this.January_textBox.MaxLength = 3;
             this.January_textBox.Name = "January_textBox";
-            this.January_textBox.Size = new System.Drawing.Size(53, 26);
+            this.January_textBox.Size = new System.Drawing.Size(41, 26);
             this.January_textBox.TabIndex = 0;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(28, 431);
+            this.label13.Location = new System.Drawing.Point(3, 360);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(41, 13);
-            this.label13.TabIndex = 15;
+            this.label13.TabIndex = 12;
             this.label13.Text = "label13";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(3, 380);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(41, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "label14";
             // 
             // MonthConfigEditorV2Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 459);
-            this.Controls.Add(this.label13);
+            this.ClientSize = new System.Drawing.Size(292, 434);
+            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -450,5 +486,7 @@
         private System.Windows.Forms.TextBox March_textBox;
         private System.Windows.Forms.TextBox February_textBox;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ToolStripMenuItem Reset_StripMenu;
     }
 }

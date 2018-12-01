@@ -10,12 +10,9 @@ namespace SalaryCalculator.Dekstop
     {
         public delegate void methodHandler(MonthConfigEditorWindow obj);
         public methodHandler TestNewMonthConfiginInMainWindow;
+        private MonthsWorkingHours _monthsWorkingHours; 
 
-        private MonthsWorkingHours _monthsWorkingHours;
-        private string _MonthConfigFilePath = "MonthConfig.json";
-        private string _MonthConfigLastGoodConfigurationFilePath = "MonthConfigLastGoodConfiguration.json";  
-
-        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, string status)
+        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, ConfigurationWindowMode status)
         {
             _monthsWorkingHours = monthsWorkingHours;
             InitializeComponent();
@@ -23,14 +20,14 @@ namespace SalaryCalculator.Dekstop
             RunSelectedMethodBasedOnStatusFromMainWindow(status);
         }              
 
-        private void RunSelectedMethodBasedOnStatusFromMainWindow(string status)
+        private void RunSelectedMethodBasedOnStatusFromMainWindow(ConfigurationWindowMode status)
         {
             switch (status)
             {
-                case "bad_MonthConfig":
+                case ConfigurationWindowMode.FixInvalidConfiguration:
                     RestoreLastGoodConfigurationOfMonthConfig();
                     break;
-                case "good_MonthConfig":
+                case ConfigurationWindowMode.EditConfiguration:
                     SaveNewValueToMonthConfig();
                     break;
                 default:
@@ -40,7 +37,7 @@ namespace SalaryCalculator.Dekstop
 
         private void WriteMonthConfigFileToTextBox()
         {
-            MonthConfigFile_TextBox.Text = ReadSelectedFile(_MonthConfigFilePath);
+            MonthConfigFile_TextBox.Text = ReadSelectedFile($"{MonthConfigPaths.MonthConfig.ToString()}.json");
         }
 
         private void WriteTextBoxToMonthConfigFile(string monthConfigFilePath)
@@ -60,30 +57,30 @@ namespace SalaryCalculator.Dekstop
         }
         private void RestoreLastGoodConfigurationOfMonthConfig()
         {            
-            using (StreamWriter newTask = new StreamWriter(_MonthConfigFilePath, false))
+            using (StreamWriter newTask = new StreamWriter($"{MonthConfigPaths.MonthConfig.ToString()}.json", false))
             {
-                newTask.WriteLine(ReadSelectedFile(_MonthConfigLastGoodConfigurationFilePath));              
+                newTask.WriteLine(ReadSelectedFile($"{MonthConfigPaths.MonthConfigLastGoodConfiguration.ToString()}.json"));              
             }
             WriteMonthConfigFileToTextBox();
         }
         
         private bool CheckIfChangesHaveBeenMadeInTextBox()
         {
-            var monthConfigFileValue = ReadSelectedFile(_MonthConfigFilePath);
+            var monthConfigFileValue = ReadSelectedFile($"{MonthConfigPaths.MonthConfig.ToString()}.json");
             return monthConfigFileValue != MonthConfigFile_TextBox.Text ? true : false;
         }
 
         private void CheckCorrectMonthConfigInMainWindow()
         {
-            WriteTextBoxToMonthConfigFile(_MonthConfigFilePath);
+            WriteTextBoxToMonthConfigFile($"{MonthConfigPaths.MonthConfig.ToString()}.json");
             TestNewMonthConfiginInMainWindow?.Invoke(this);
         }
 
         private void SaveNewValueToMonthConfig()
         {
-            WriteTextBoxToMonthConfigFile(_MonthConfigLastGoodConfigurationFilePath);
+            WriteTextBoxToMonthConfigFile($"{MonthConfigPaths.MonthConfigLastGoodConfiguration.ToString()}.json");
             WriteMonthConfigFileToTextBox();
-            MessageBox.Show("Zmiany zostały zapisane!", "Info");
+            MessageBox.Show($"{Properties.Resources.succesfullSave_message}", "Info");
         }
 
         private void Save_StripMenu_Click(object sender, EventArgs e)
@@ -94,7 +91,7 @@ namespace SalaryCalculator.Dekstop
             }
             else
             {
-                MessageBox.Show("Nie wprowadzono żadnych zmian.", "Info");
+                MessageBox.Show($"{Properties.Resources.noChangesMade_message}", "Info");
             }           
         }
 
