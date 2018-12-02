@@ -11,7 +11,7 @@ namespace SalaryCalculator.SalaryReport
             report
                 .AppendLine(Environment.NewLine)
                 .AppendLine($"Podsumowanie dla miesiąca {Month.NumberToName(factors.WorkedMonth)} :")
-                .AppendLine("")
+                .AppendLine(" ")
                 .AppendLine(
                     $"Wymiar czasu pracy w tym miesiącu: {monthsWorkingHours[factors.WorkedMonth]}h, Przepracowano: {factors.WorkedHours}h")
                 .AppendLine($"Stawka godzinowa (brutto): {factors.HourlyFee}zł {Environment.NewLine}")
