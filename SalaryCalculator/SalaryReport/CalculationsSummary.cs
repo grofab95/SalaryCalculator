@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SalaryCalculator.SalaryReport
 {
-    public class CalculateSummary
+    public class CalculationsSummary
     {
         public double OverHoursAmount { get; set; }
         public double OverHoursGrossIncome { get; set; }

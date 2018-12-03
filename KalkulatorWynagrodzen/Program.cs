@@ -5,7 +5,7 @@ using SalaryCalculator;
 using SalaryCalculator.SalaryReport;
 
 namespace Console
-{   
+{
     public class Program
     {
         static void Main()
@@ -14,7 +14,7 @@ namespace Console
             {
                 try
                 {
-                    System.Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");                    
+                    System.Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
                     var monthsWorkingHoursConfiguration
                         = JsonFileTranslator.ReadFrom<Dictionary<int, int>>("MonthConfig.json");
                     var monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
@@ -24,10 +24,9 @@ namespace Console
                         HourlyFee = UserInputConsoleReader.ReadHourlyFee(),
                         WorkedMonth = UserInputConsoleReader.ReadMonth()
                     };
-                    var summary = new CalculateSummary();
-                    var monthSalaryReport = new MonthSalaryReport(monthsWorkingHours, factors, summary);
+                    var monthSalaryReport = new MonthSalaryReport(monthsWorkingHours, factors);
                     var textReport = new SimpleTextReportBuilder()
-                        .BuildMontlhyReport(monthsWorkingHours, factors, summary);
+                        .BuildMontlhyReport(monthSalaryReport);
                     System.Console.WriteLine(textReport);
                 }
                 catch (Exception ex)

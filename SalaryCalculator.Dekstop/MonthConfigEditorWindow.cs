@@ -10,24 +10,24 @@ namespace SalaryCalculator.Dekstop
     {
         public delegate void methodHandler(MonthConfigEditorWindow obj);
         public methodHandler TestNewMonthConfiginInMainWindow;
-        private MonthsWorkingHours _monthsWorkingHours; 
+        private MonthsWorkingHours _monthsWorkingHours;
 
-        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, ConfigurationWindowMode status)
+        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, ConfigurationEditMode status)
         {
             _monthsWorkingHours = monthsWorkingHours;
             InitializeComponent();
             WriteMonthConfigFileToTextBox();
             RunSelectedMethodBasedOnStatusFromMainWindow(status);
-        }              
+        }
 
-        private void RunSelectedMethodBasedOnStatusFromMainWindow(ConfigurationWindowMode status)
+        private void RunSelectedMethodBasedOnStatusFromMainWindow(ConfigurationEditMode status)
         {
             switch (status)
             {
-                case ConfigurationWindowMode.FixInvalidConfiguration:
+                case ConfigurationEditMode.FixInvalid:
                     RestoreLastGoodConfigurationOfMonthConfig();
                     break;
-                case ConfigurationWindowMode.EditConfiguration:
+                case ConfigurationEditMode.Edit:
                     SaveNewValueToMonthConfig();
                     break;
                 default:
@@ -47,7 +47,7 @@ namespace SalaryCalculator.Dekstop
                 newTask.WriteLine(MonthConfigFile_TextBox.Text);
             }
         }
-        
+
         private string ReadSelectedFile(string FilePathToRead)
         {
             var file = new StreamReader(FilePathToRead);
@@ -56,15 +56,15 @@ namespace SalaryCalculator.Dekstop
             return fileValue;
         }
         private void RestoreLastGoodConfigurationOfMonthConfig()
-        {            
+        {
             using (StreamWriter newTask = new StreamWriter($"{MonthConfigPaths.MonthConfig.ToString()}.json", false))
             {
-                newTask.WriteLine(ReadSelectedFile($"{MonthConfigPaths.MonthConfigLastGoodConfiguration.ToString()}.json"));              
+                newTask.WriteLine(ReadSelectedFile($"{MonthConfigPaths.MonthConfigLastGoodConfiguration.ToString()}.json"));
             }
             WriteMonthConfigFileToTextBox();
         }
-        
-        private bool CheckIfChangesHaveBeenMadeInTextBox()
+
+        private bool IsMonthConfigTextBoxChanged()
         {
             var monthConfigFileValue = ReadSelectedFile($"{MonthConfigPaths.MonthConfig.ToString()}.json");
             return monthConfigFileValue != MonthConfigFile_TextBox.Text ? true : false;
@@ -84,22 +84,22 @@ namespace SalaryCalculator.Dekstop
         }
 
         private void Save_StripMenu_Click(object sender, EventArgs e)
-        {           
-            if (CheckIfChangesHaveBeenMadeInTextBox())
+        {
+            if (IsMonthConfigTextBoxChanged())
             {
                 CheckCorrectMonthConfigInMainWindow();
             }
             else
             {
                 MessageBox.Show($"{Properties.Resources.noChangesMade_message}", "Info");
-            }           
+            }
         }
 
         private void Exit_StripMenu_Click(object sender, EventArgs e)
         {
-            if (CheckIfChangesHaveBeenMadeInTextBox())
+            if (IsMonthConfigTextBoxChanged())
             {
-                if (MessageBox.Show("Wprowadzono zmiany, czy chcesz je zapisać?", "Uwaga!", 
+                if (MessageBox.Show("Wprowadzono zmiany, czy chcesz je zapisać?", "Uwaga!",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     CheckCorrectMonthConfigInMainWindow();

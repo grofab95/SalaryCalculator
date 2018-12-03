@@ -24,26 +24,27 @@ namespace SalaryCalculator.Dekstop
         private MonthsWorkingHours _monthsWorkingHours;
         private int[] _MonthWorkingHoursTabWithIntValue = new int[13];
         private int[] _TabWithNewMonthWorkingHours = new int[13];
-        private string[] _MonthWorkingHoursTabWithStringValue = new string[13];        
+        private string[] _MonthWorkingHoursTabWithStringValue = new string[13];
         private string[] _TabWithBadTextBoxes = new string[13];
         private string _BadInputError;
-        private string _BadHoursConfigError = "Niepoprawna liczba roboczogodzin.";
-        private string _SameValueError = "Liczba roboczogodzin jest taka sama.";
+        private string _BadHoursConfigError;
+        private string _SameValueError;
 
-        public MonthConfigEditorV2Window(MonthsWorkingHours monthsWorkingHours, ConfigurationWindowMode status)
+        public MonthConfigEditorV2Window(MonthsWorkingHours monthsWorkingHours, ConfigurationEditMode status)
         {
             _monthsWorkingHours = monthsWorkingHours;
             InitializeComponent();
-            if (status == ConfigurationWindowMode.ActualConfiguration) 
+            if (status == ConfigurationEditMode.Normal)
             {
                 CreateLabelsAndFillItWithNumberOfMonthWorkingHours();
-            }   else
+            }
+            else
             {
                 CreateLabelsAndFillItWithNumberOfMonthWorkingHours();
                 MessageBox.Show($"{Properties.Resources.succesfullSave_message}", "Info");
-            }       
+            }
         }
-        
+
         private void CreateLabelsAndFillItWithNumberOfMonthWorkingHours()
         {
             var monthsLabels = Enumerable
@@ -97,7 +98,7 @@ namespace SalaryCalculator.Dekstop
             }
         }
 
-        private bool CheckIfChangesHaveBeenMadeInTextBoxes()
+        private bool IsTextBoxesWithMonthsChanged()
         {
             WriteTextBoxeValuesToTabWithStringValue();
             RemoveZeroValuesInTextBox();
@@ -111,7 +112,7 @@ namespace SalaryCalculator.Dekstop
             {
                 try
                 {
-                    if(_MonthWorkingHoursTabWithStringValue[i] != "")
+                    if (_MonthWorkingHoursTabWithStringValue[i] != "")
                     {
                         _MonthWorkingHoursTabWithIntValue[i] =
                             Parser.ParseStringToInt(_MonthWorkingHoursTabWithStringValue[i]);
@@ -124,12 +125,12 @@ namespace SalaryCalculator.Dekstop
                 }
             }
         }
-        
+
         private void CheckTextBoxesForTheSameValues()
         {
             for (int i = 1; i <= 12; i++)
             {
-                if(_MonthWorkingHoursTabWithIntValue[i] == _monthsWorkingHours[i])
+                if (_MonthWorkingHoursTabWithIntValue[i] == _monthsWorkingHours[i])
                 {
                     RefillTabWithWrongTextBoxesValues(i, ErrorType.SameValue);
                 }
@@ -162,11 +163,11 @@ namespace SalaryCalculator.Dekstop
             {
                 if (_MonthWorkingHoursTabWithStringValue[i] == "")
                 {
-                     EmptyTextBoxes++;
+                    EmptyTextBoxes++;
                 }
             }
             return EmptyTextBoxes;
-        }        
+        }
 
         private void RefillTabWithWrongTextBoxesValues(int order, ErrorType errorType)
         {
@@ -175,37 +176,36 @@ namespace SalaryCalculator.Dekstop
 
         private void IdentifyErrorTypeInTabWithBadTextBoxes()
         {
-            string badInputError = "", badHoursConfigError = "", sameValueError = "";
             for (int i = 1; i <= 12; i++)
             {
                 if (_TabWithBadTextBoxes[i] == ErrorType.BadHoursConfig.ToString())
                 {
                     SetBackColorInSelectedTextBox(i, Color.Yellow);
-                    badHoursConfigError = _BadHoursConfigError;
+                    _BadHoursConfigError = "Niepoprawna liczba roboczogodzin."; ;
                 }
                 if (_TabWithBadTextBoxes[i] == ErrorType.BadInputFormat.ToString())
                 {
                     SetBackColorInSelectedTextBox(i, Color.Red);
-                    badInputError = _BadInputError;
+                    _BadInputError = "Niepoprawna liczba roboczogodzin."; ;
                 }
                 if (_TabWithBadTextBoxes[i] == ErrorType.SameValue.ToString())
                 {
                     SetBackColorInSelectedTextBox(i, Color.LightBlue);
-                    sameValueError = _SameValueError;
+                    _SameValueError = "Liczba roboczogodzin jest taka sama.";
                 }
             }
-            ShowSpecialMessageBox(badInputError, badHoursConfigError, sameValueError);
+            ShowSpecialMessageBox();
         }
 
-        private void ShowSpecialMessageBox(string badInputError, string badHoursConfigError, string sameValueError)
+        private void ShowSpecialMessageBox()
         {
             var messageBoxForEditorV2 = new MessageBoxForEditorV2();
-            messageBoxForEditorV2.PrintMessage(badInputError, badHoursConfigError, sameValueError);
+            messageBoxForEditorV2.PrintMessage(_BadInputError, _BadHoursConfigError, _SameValueError);
             messageBoxForEditorV2.Location = new Point(this.Right, this.Top + 150);
             messageBoxForEditorV2.StartPosition = FormStartPosition.Manual;
             messageBoxForEditorV2.ShowDialog();
         }
-        private bool CheckIfSaveIsPossible()
+        private bool IsSaveIsPossible()
         {
             for (int i = 1; i <= 12; i++)
             {
@@ -224,11 +224,12 @@ namespace SalaryCalculator.Dekstop
                 if (_MonthWorkingHoursTabWithIntValue[i] == 0)
                 {
                     _TabWithNewMonthWorkingHours[i] = _monthsWorkingHours[i];
-                } else
+                }
+                else
                 {
                     _TabWithNewMonthWorkingHours[i] = _MonthWorkingHoursTabWithIntValue[i];
                 }
-            }            
+            }
         }
 
         private void WriteNewValueToSelectedMonthConfigFromTab(MonthConfigPaths monthConfigPath)
@@ -249,7 +250,7 @@ namespace SalaryCalculator.Dekstop
                  { 12, _TabWithNewMonthWorkingHours[12] },
                 };
             JsonFileTranslator.WriteTo($"{monthConfigPath.ToString()}.json", contents);
-        } 
+        }
 
         private void SetBackColorInSelectedTextBox(int TextBoxNumber, Color color)
         {
@@ -292,7 +293,7 @@ namespace SalaryCalculator.Dekstop
                     December_textBox.BackColor = color;
                     break;
                 default:
-                    for(int i = 0; i <= 11; i++)
+                    for (int i = 0; i <= 11; i++)
                     {
                         SetBackColorInSelectedTextBox(i + 1, color);
                     }
@@ -301,7 +302,7 @@ namespace SalaryCalculator.Dekstop
         }
 
         private void ClearTabs()
-        {            
+        {
             for (int i = 1; i <= 12; i++)
             {
                 _MonthWorkingHoursTabWithIntValue[i] = 0;
@@ -352,35 +353,45 @@ namespace SalaryCalculator.Dekstop
                     December_textBox.Text = "";
                     break;
                 default:
-                    for(int i = 0; i <= 11; i++)
+                    for (int i = 0; i <= 11; i++)
                     {
                         ClearTextBoxes(i + 1);
                     }
                     break;
-            }            
+            }
+        }
+
+        private void ClearErrorFields()
+        {
+            _BadHoursConfigError = "";
+            _BadInputError = "";
+            _SameValueError = "";
         }
 
         private void Save_StripMenu_Click_1(object sender, EventArgs e)
         {
+            ClearErrorFields();
             ClearTabs();
             SetBackColorInSelectedTextBox(13, Color.White);
-            if (CheckIfChangesHaveBeenMadeInTextBoxes())
+            if (IsTextBoxesWithMonthsChanged())
             {
                 TryAllocateNonEmptyValueFromStringTabToIntTab();
                 CheckInvalidMonthConfigInTabWithIntValue();
                 CheckTextBoxesForTheSameValues();
-                if (CheckIfSaveIsPossible())
+                if (IsSaveIsPossible())
                 {
                     RefillTabWithNewMonthWorkingHours();
                     WriteNewValueToSelectedMonthConfigFromTab(MonthConfigPaths.MonthConfig);
                     WriteNewValueToSelectedMonthConfigFromTab(MonthConfigPaths.MonthConfigLastGoodConfiguration);
                     RestartMonthConfigEditorV2Window?.Invoke(this);
-                } else
+                }
+                else
                 {
                     IdentifyErrorTypeInTabWithBadTextBoxes();
-                }                
-            } else
-            {                
+                }
+            }
+            else
+            {
                 MessageBox.Show(Properties.Resources.noChangesMade_message, "Info");
                 ClearTextBoxes(13);
             }
@@ -388,6 +399,7 @@ namespace SalaryCalculator.Dekstop
 
         private void Reset_StripMenuItem_Click(object sender, EventArgs e)
         {
+            ClearErrorFields();
             ClearTabs();
             ClearTextBoxes(13);
             SetBackColorInSelectedTextBox(13, Color.White);
@@ -395,9 +407,10 @@ namespace SalaryCalculator.Dekstop
 
         private void Exit_StripMenu_Click(object sender, EventArgs e)
         {
+            ClearErrorFields();
             ClearTabs();
             SetBackColorInSelectedTextBox(13, Color.White);
-            if (CheckIfChangesHaveBeenMadeInTextBoxes())
+            if (IsTextBoxesWithMonthsChanged())
             {
                 if (MessageBox.Show("Wprowadzono zmiany, czy chcesz je zapisać?", "Uwaga!",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -405,7 +418,7 @@ namespace SalaryCalculator.Dekstop
                     TryAllocateNonEmptyValueFromStringTabToIntTab();
                     CheckInvalidMonthConfigInTabWithIntValue();
                     CheckTextBoxesForTheSameValues();
-                    if (CheckIfSaveIsPossible())
+                    if (IsSaveIsPossible())
                     {
                         RefillTabWithNewMonthWorkingHours();
                         WriteNewValueToSelectedMonthConfigFromTab(MonthConfigPaths.MonthConfig);

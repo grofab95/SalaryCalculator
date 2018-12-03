@@ -7,53 +7,52 @@ using SalaryCalculator.SalaryReport;
 
 namespace SalaryCalculator.Dekstop
 {
-    public enum ConfigurationWindowMode
+    public enum ConfigurationEditMode
     {
-        ActualConfiguration,
-        FixInvalidConfiguration,
-        EditConfiguration,
+        Normal,
+        FixInvalid,
+        Edit,
     }
 
     public enum MonthConfigPaths
     {
         MonthConfig,
         MonthConfigLastGoodConfiguration,
-
     }
 
     public partial class CalculatorMainWindow : Form
-    {        
+    {
         private MonthsWorkingHours _monthsWorkingHours;
         public CalculatorMainWindow()
         {
             LoadMonthConfig();
             InitializeComponent();
-            RefreshMonthSelect_ComboBox();            
-        }     
-        
+            RefreshMonthSelect_ComboBox();
+        }
+
         private void LoadMonthConfig()
         {
             var monthsWorkingHoursConfiguration
-                           = JsonFileTranslator.ReadFrom<Dictionary<int, int>>("MonthConfig.json");
+                           = JsonFileTranslator.ReadFrom<Dictionary<int, int>>($"{MonthConfigPaths.MonthConfig}.json");
             _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
         }
 
         private void RefreshMonthSelect_ComboBox()
         {
             MonthSelect_ComboBox.Items.Clear();
-            System.Object[] ItemObject = new System.Object[12];
+            var comboBoxItemWithMonth = new System.Object[12];
             for (int i = 0; i <= 11; i++)
             {
-                ItemObject[i] = $"{Month.NumberToName(i+1)}  ({_monthsWorkingHours[i+1]} h)";
+                comboBoxItemWithMonth[i] = $"{Month.NumberToName(i + 1)}  ({_monthsWorkingHours[i + 1]} h)";
             }
-            MonthSelect_ComboBox.Items.AddRange(ItemObject);
+            MonthSelect_ComboBox.Items.AddRange(comboBoxItemWithMonth);
             MonthSelect_ComboBox.Refresh();
             MonthSelect_ComboBox.SelectedIndex = 0;
         }
 
-        private bool CheckIfChangesHaveBeenMadeInTextBoxes()
+        private bool IsWorkedHoursAndHourlyFeeTextBoxesFilled()
         {
-            if(WorkedHours_TextBox.Text == "" || HourlyFee_TextBox.Text == "")
+            if (WorkedHours_TextBox.Text == "" || HourlyFee_TextBox.Text == "")
             {
                 MessageBox.Show("Nie uzupełniono wszystkich pól!", "Uwaga!");
                 return false;
@@ -63,7 +62,7 @@ namespace SalaryCalculator.Dekstop
 
         private void Calculate_Button_Click(object sender, EventArgs e)
         {
-            if (CheckIfChangesHaveBeenMadeInTextBoxes())
+            if (IsWorkedHoursAndHourlyFeeTextBoxesFilled())
             {
                 try
                 {
@@ -73,10 +72,9 @@ namespace SalaryCalculator.Dekstop
                         HourlyFee = Parser.ParseStringToDouble(HourlyFee_TextBox.Text),
                         WorkedMonth = MonthSelect_ComboBox.SelectedIndex + 1
                     };
-                    var summary = new CalculateSummary();
-                    var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors, summary);
+                    var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors);
                     var textReport = new SimpleTextReportBuilder()
-                        .BuildMontlhyReport(_monthsWorkingHours, factors, summary);
+                        .BuildMontlhyReport(monthSalaryReport);
                     new CalculatorReportWindow(textReport).ShowDialog();
                 }
                 catch (Exception ex)
@@ -97,7 +95,7 @@ namespace SalaryCalculator.Dekstop
             Application.Exit();
         }
 
-        private void RunMonthConfigEditorWindow(ConfigurationWindowMode status)
+        private void RunMonthConfigEditorWindow(ConfigurationEditMode status)
         {
             var monthConfigEditorWindow = new MonthConfigEditorWindow(_monthsWorkingHours, status);
             monthConfigEditorWindow.TestNewMonthConfiginInMainWindow
@@ -105,7 +103,7 @@ namespace SalaryCalculator.Dekstop
             monthConfigEditorWindow.ShowDialog();
         }
 
-        private void RunMonthConfigEditorV2Window(ConfigurationWindowMode status)
+        private void RunMonthConfigEditorV2Window(ConfigurationEditMode status)
         {
             var monthConfigEditorV2Window = new MonthConfigEditorV2Window(_monthsWorkingHours, status);
             monthConfigEditorV2Window.RestartMonthConfigEditorV2Window
@@ -113,18 +111,18 @@ namespace SalaryCalculator.Dekstop
             monthConfigEditorV2Window.ShowDialog();
         }
 
-        private void RestartMonthConfigEditorV2Window(MonthConfigEditorV2Window obj)
+        private void RestartMonthConfigEditorV2Window(MonthConfigEditorV2Window monthConfigEditorV2Window)
         {
-            obj.Close();
+            monthConfigEditorV2Window.Close();
             LoadMonthConfig();
             RefreshMonthSelect_ComboBox();
-            RunMonthConfigEditorV2Window(ConfigurationWindowMode.EditConfiguration);
-        }        
-        
-        private void TestNewMonthConfiginInMainWindow(MonthConfigEditorWindow obj)
+            RunMonthConfigEditorV2Window(ConfigurationEditMode.Edit);
+        }
+
+        private void TestNewMonthConfiginInMainWindow(MonthConfigEditorWindow monthConfigEditorWindow)
         {
             var isConfigurationValid = true;
-            obj.Close();
+            monthConfigEditorWindow.Close();
             try
             {
                 LoadMonthConfig();
@@ -132,24 +130,24 @@ namespace SalaryCalculator.Dekstop
             catch (Exception e)
             {
                 MessageBox.Show($"{e.Message}", "Uwaga!");
-                RunMonthConfigEditorWindow(ConfigurationWindowMode.FixInvalidConfiguration);
+                RunMonthConfigEditorWindow(ConfigurationEditMode.FixInvalid);
                 isConfigurationValid = false;
             }
             if (isConfigurationValid)
             {
                 RefreshMonthSelect_ComboBox();
-                RunMonthConfigEditorWindow(ConfigurationWindowMode.EditConfiguration);
+                RunMonthConfigEditorWindow(ConfigurationEditMode.Edit);
             }
         }
 
         private void MonthConfig_StripMenu_Click(object sender, EventArgs e)
         {
-            RunMonthConfigEditorWindow(ConfigurationWindowMode.ActualConfiguration);
+            RunMonthConfigEditorWindow(ConfigurationEditMode.Normal);
         }
 
         private void MonthConfigV2_StripMenu_Click(object sender, EventArgs e)
         {
-            RunMonthConfigEditorV2Window(ConfigurationWindowMode.ActualConfiguration);      
+            RunMonthConfigEditorV2Window(ConfigurationEditMode.Normal);
         }
-    }       
+    }
 }
