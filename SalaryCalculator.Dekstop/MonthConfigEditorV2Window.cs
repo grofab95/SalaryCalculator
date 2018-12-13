@@ -53,7 +53,6 @@ namespace SalaryCalculator.Dekstop
             {
                 Text = _monthsWorkingHours[index].ToString(),
                 Font = _defaultMonthLabel,
-
                 Margin = _defaultPadding
             });
             foreach (var monthsLabel in monthsLabels)
