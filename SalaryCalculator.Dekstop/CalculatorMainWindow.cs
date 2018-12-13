@@ -33,7 +33,7 @@ namespace SalaryCalculator.Dekstop
         private void LoadMonthConfig()
         {
             var monthsWorkingHoursConfiguration
-                           = JsonFileTranslator.ReadFrom<Dictionary<int, int>>($"{MonthConfigPaths.MonthConfig}.json");
+                           = JsonFileConverter.ConvertFromFile<Dictionary<int, int>>($"{MonthConfigPaths.MonthConfig}.json");
             _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
         }
 
