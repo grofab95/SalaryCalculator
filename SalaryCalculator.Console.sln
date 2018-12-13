@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonFileConverter", "Config
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Console.Tests", "Console.Tests\SalaryCalculator.Console.Tests.csproj", "{A0F4B775-F559-4907-AB55-ABFC892F693A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Dekstop", "SalaryCalculator.Dekstop\SalaryCalculator.Dekstop.csproj", "{F6DE349F-350B-45FD-8335-8C50E9FA6D69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Desktop", "SalaryCalculator.Dekstop\SalaryCalculator.Desktop.csproj", "{F6DE349F-350B-45FD-8335-8C50E9FA6D69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Tests", "SalaryCalculator.Tests\SalaryCalculator.Tests.csproj", "{821771CF-2FAD-4ED6-A40A-F388E0E33500}"
 EndProject

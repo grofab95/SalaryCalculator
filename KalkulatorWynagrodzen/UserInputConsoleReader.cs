@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Parsers
+﻿namespace Parsers
 {
     internal static class UserInputConsoleReader
     {

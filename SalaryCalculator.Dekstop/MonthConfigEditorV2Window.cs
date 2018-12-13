@@ -1,5 +1,4 @@
 ﻿using Parsers;
-using FileTranslator;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,12 +7,6 @@ using System.Windows.Forms;
 
 namespace SalaryCalculator.Dekstop
 {
-    public enum ErrorType
-    {
-        BadHoursConfig,
-        BadInputFormat,
-        SameValue,
-    }
     public partial class MonthConfigEditorV2Window : Form
     {
         public delegate void methodHandler(MonthConfigEditorV2Window obj);
@@ -84,15 +77,9 @@ namespace SalaryCalculator.Dekstop
             {
                 if (_MonthWorkingHoursTabWithStringValue[i].IndexOf("0") == 0)
                 {
-                    try
-                    {
-                        StringParser.StringToInt(_MonthWorkingHoursTabWithStringValue[i]);
-                        ClearTextBoxes(i);
-                        _MonthWorkingHoursTabWithStringValue[i] = "";
-                    }
-                    catch
-                    {
-                    }
+                    StringParser.StringToInt(_MonthWorkingHoursTabWithStringValue[i]);
+                    ClearTextBoxes(i);
+                    _MonthWorkingHoursTabWithStringValue[i] = "";
                 }
             }
         }
@@ -247,7 +234,7 @@ namespace SalaryCalculator.Dekstop
                  { 11, _TabWithNewMonthWorkingHours[11] },
                  { 12, _TabWithNewMonthWorkingHours[12] },
                 };
-            JsonFileConverter.ConvertToFile($"{monthConfigPath.ToString()}.json", contents);
+            JsonFileConverter.JsonFileConverter.ConvertToFile($"{monthConfigPath.ToString()}.json", contents);
         }
 
         private void SetBackColorInSelectedTextBox(int TextBoxNumber, Color color)
@@ -430,12 +417,12 @@ namespace SalaryCalculator.Dekstop
                 }
                 else
                 {
-                    this.Close();
+                    Close();
                 }
             }
             else
             {
-                this.Close();
+                Close();
             }
         }
     }

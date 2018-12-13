@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using FileTranslator;
-using SalaryCalculator;
+using Parsers;
 using SalaryCalculator.SalaryReport;
 
-namespace Parsers
+namespace SalaryCalculator.Console
 {
     public class Program
     {
@@ -16,7 +15,7 @@ namespace Parsers
                 {
                     System.Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
                     var monthsWorkingHoursConfiguration
-                        = JsonFileConverter.ConvertFromFile<Dictionary<int, int>>("MonthConfig.json");
+                        = JsonFileConverter.JsonFileConverter.ConvertFromFile<Dictionary<int, int>>("MonthConfig.json");
                     var monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
                     var factors = new Factors
                     {

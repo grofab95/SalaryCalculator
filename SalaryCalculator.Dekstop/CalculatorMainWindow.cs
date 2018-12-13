@@ -2,24 +2,10 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Parsers;
-using FileTranslator;
 using SalaryCalculator.SalaryReport;
 
 namespace SalaryCalculator.Dekstop
 {
-    public enum ConfigurationEditMode
-    {
-        Normal,
-        FixInvalid,
-        Edit,
-    }
-
-    public enum MonthConfigPaths
-    {
-        MonthConfig,
-        MonthConfigLastGoodConfiguration,
-    }
-
     public partial class CalculatorMainWindow : Form
     {
         private MonthsWorkingHours _monthsWorkingHours;
@@ -33,7 +19,7 @@ namespace SalaryCalculator.Dekstop
         private void LoadMonthConfig()
         {
             var monthsWorkingHoursConfiguration
-                           = JsonFileConverter.ConvertFromFile<Dictionary<int, int>>($"{MonthConfigPaths.MonthConfig}.json");
+                           = JsonFileConverter.JsonFileConverter.ConvertFromFile<Dictionary<int, int>>($"{MonthConfigPaths.MonthConfig}.json");
             _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
         }
 
@@ -99,7 +85,7 @@ namespace SalaryCalculator.Dekstop
         {
             var monthConfigEditorWindow = new MonthConfigEditorWindow(_monthsWorkingHours, status);
             monthConfigEditorWindow.TestNewMonthConfiginInMainWindow
-                += new MonthConfigEditorWindow.methodHandler(TestNewMonthConfiginInMainWindow);
+                += TestNewMonthConfiginInMainWindow;
             monthConfigEditorWindow.ShowDialog();
         }
 
@@ -107,7 +93,7 @@ namespace SalaryCalculator.Dekstop
         {
             var monthConfigEditorV2Window = new MonthConfigEditorV2Window(_monthsWorkingHours, status);
             monthConfigEditorV2Window.RestartMonthConfigEditorV2Window
-                += new MonthConfigEditorV2Window.methodHandler(RestartMonthConfigEditorV2Window);
+                += RestartMonthConfigEditorV2Window;
             monthConfigEditorV2Window.ShowDialog();
         }
 

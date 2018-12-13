@@ -38,12 +38,6 @@ namespace SalaryCalculator
             }
         }
 
-        public int this[int key]
-        {
-            get
-            {
-                return _monthsWorkingHoursDictionary[key]; 
-            }
-        }
+        public int this[int key] => _monthsWorkingHoursDictionary[key];
     }
 }
