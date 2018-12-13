@@ -203,7 +203,8 @@ namespace SalaryCalculator.Dekstop
             messageBoxForEditorV2.StartPosition = FormStartPosition.Manual;
             messageBoxForEditorV2.ShowDialog();
         }
-        private bool IsSaveIsPossible()
+
+        private bool IsSavePossible()
         {
             for (int i = 1; i <= 12; i++)
             {
@@ -291,9 +292,9 @@ namespace SalaryCalculator.Dekstop
                     December_textBox.BackColor = color;
                     break;
                 default:
-                    for (int i = 0; i <= 11; i++)
+                    for (int i = 1; i <= 12; i++)
                     {
-                        SetBackColorInSelectedTextBox(i + 1, color);
+                        SetBackColorInSelectedTextBox(i, color);
                     }
                     break;
             }
@@ -351,9 +352,9 @@ namespace SalaryCalculator.Dekstop
                     December_textBox.Text = "";
                     break;
                 default:
-                    for (int i = 0; i <= 11; i++)
+                    for (int i = 1; i <= 12; i++)
                     {
-                        ClearTextBoxes(i + 1);
+                        ClearTextBoxes(i);
                     }
                     break;
             }
@@ -376,7 +377,7 @@ namespace SalaryCalculator.Dekstop
                 TryAllocateNonEmptyValueFromStringTabToIntTab();
                 CheckInvalidMonthConfigInTabWithIntValue();
                 CheckTextBoxesForTheSameValues();
-                if (IsSaveIsPossible())
+                if (IsSavePossible())
                 {
                     RefillTabWithNewMonthWorkingHours();
                     WriteNewValueToSelectedMonthConfigFromTab(MonthConfigPaths.MonthConfig);
@@ -416,7 +417,7 @@ namespace SalaryCalculator.Dekstop
                     TryAllocateNonEmptyValueFromStringTabToIntTab();
                     CheckInvalidMonthConfigInTabWithIntValue();
                     CheckTextBoxesForTheSameValues();
-                    if (IsSaveIsPossible())
+                    if (IsSavePossible())
                     {
                         RefillTabWithNewMonthWorkingHours();
                         WriteNewValueToSelectedMonthConfigFromTab(MonthConfigPaths.MonthConfig);
