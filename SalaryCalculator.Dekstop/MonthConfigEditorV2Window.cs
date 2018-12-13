@@ -1,4 +1,4 @@
-﻿using Console;
+﻿using Parsers;
 using FileTranslator;
 using System;
 using System.Collections.Generic;
@@ -86,7 +86,7 @@ namespace SalaryCalculator.Dekstop
                 {
                     try
                     {
-                        Parser.ParseStringToInt(_MonthWorkingHoursTabWithStringValue[i]);
+                        StringParser.StringToInt(_MonthWorkingHoursTabWithStringValue[i]);
                         ClearTextBoxes(i);
                         _MonthWorkingHoursTabWithStringValue[i] = "";
                     }
@@ -113,7 +113,7 @@ namespace SalaryCalculator.Dekstop
                     if (_MonthWorkingHoursTabWithStringValue[i] != "")
                     {
                         _MonthWorkingHoursTabWithIntValue[i] =
-                            Parser.ParseStringToInt(_MonthWorkingHoursTabWithStringValue[i]);
+                            StringParser.StringToInt(_MonthWorkingHoursTabWithStringValue[i]);
                     }
                 }
                 catch (Exception e)

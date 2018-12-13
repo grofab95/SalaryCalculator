@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Console;
+using Parsers;
 using FileTranslator;
 using SalaryCalculator.SalaryReport;
 
@@ -68,8 +68,8 @@ namespace SalaryCalculator.Dekstop
                 {
                     var factors = new Factors
                     {
-                        WorkedHours = Parser.ParseStringToDouble(WorkedHours_TextBox.Text),
-                        HourlyFee = Parser.ParseStringToDouble(HourlyFee_TextBox.Text),
+                        WorkedHours = StringParser.StringToDouble(WorkedHours_TextBox.Text),
+                        HourlyFee = StringParser.StringToDouble(HourlyFee_TextBox.Text),
                         WorkedMonth = MonthSelect_ComboBox.SelectedIndex + 1
                     };
                     var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors);

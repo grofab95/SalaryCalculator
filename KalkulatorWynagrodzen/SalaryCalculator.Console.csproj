@@ -65,9 +65,9 @@
       <Project>{5d23fe78-e6af-4a46-8bb4-04d5d760aeb5}</Project>
       <Name>JsonFileConverter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ParsingUtilities\ParsingUtilities.csproj">
+    <ProjectReference Include="..\ParsingUtilities\Parsers.csproj">
       <Project>{e78628d3-a11d-45a4-92ba-82beb6131226}</Project>
-      <Name>ParsingUtilities</Name>
+      <Name>Parsers</Name>
     </ProjectReference>
     <ProjectReference Include="..\SalaryCalculator\SalaryCalculator.csproj">
       <Project>{70633d9e-19a7-4dff-8fb7-69b04ca6cbf3}</Project>

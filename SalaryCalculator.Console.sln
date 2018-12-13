@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Dekstop", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalaryCalculator.Tests", "SalaryCalculator.Tests\SalaryCalculator.Tests.csproj", "{821771CF-2FAD-4ED6-A40A-F388E0E33500}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsingUtilities", "ParsingUtilities\ParsingUtilities.csproj", "{E78628D3-A11D-45A4-92BA-82BEB6131226}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parsers", "ParsingUtilities\Parsers.csproj", "{E78628D3-A11D-45A4-92BA-82BEB6131226}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ECB56D0C-3535-42F2-BDDF-BAC6DC9C77B5}"
 EndProject

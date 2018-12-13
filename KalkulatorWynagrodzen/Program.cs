@@ -4,7 +4,7 @@ using FileTranslator;
 using SalaryCalculator;
 using SalaryCalculator.SalaryReport;
 
-namespace Console
+namespace Parsers
 {
     public class Program
     {
