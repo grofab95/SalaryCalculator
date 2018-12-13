@@ -102,7 +102,6 @@ namespace SalaryCalculator.Dekstop
         {
             WriteTextBoxeValuesToTabWithStringValue();
             RemoveZeroValuesInTextBox();
-            CountEmptyTextBoxes();
             return CountEmptyTextBoxes() == 12 ? false : true;
         }
 
@@ -186,7 +185,6 @@ namespace SalaryCalculator.Dekstop
                 if (_TabWithBadTextBoxes[i] == ErrorType.BadInputFormat.ToString())
                 {
                     SetBackColorInSelectedTextBox(i, Color.Red);
-                    _BadInputError = "Niepoprawna liczba roboczogodzin."; ;
                 }
                 if (_TabWithBadTextBoxes[i] == ErrorType.SameValue.ToString())
                 {
