@@ -81,9 +81,9 @@
       <Project>{5d23fe78-e6af-4a46-8bb4-04d5d760aeb5}</Project>
       <Name>FileTranslator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\KalkulatorWynagrodzen\Console.csproj">
+    <ProjectReference Include="..\KalkulatorWynagrodzen\SalaryCalculator.Console.csproj">
       <Project>{4838d048-9948-4204-9127-5662fb22a5d4}</Project>
-      <Name>Console</Name>
+      <Name>SalaryCalculator.Console</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParsingUtilities\ParsingUtilities.csproj">
       <Project>{e78628d3-a11d-45a4-92ba-82beb6131226}</Project>
