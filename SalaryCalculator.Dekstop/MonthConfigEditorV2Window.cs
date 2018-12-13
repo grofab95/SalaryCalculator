@@ -247,7 +247,7 @@ namespace SalaryCalculator.Dekstop
                  { 11, _TabWithNewMonthWorkingHours[11] },
                  { 12, _TabWithNewMonthWorkingHours[12] },
                 };
-            JsonFileTranslator.WriteTo($"{monthConfigPath.ToString()}.json", contents);
+            JsonFileConverter.ConvertToFile($"{monthConfigPath.ToString()}.json", contents);
         }
 
         private void SetBackColorInSelectedTextBox(int TextBoxNumber, Color color)

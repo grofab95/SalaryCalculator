@@ -16,7 +16,7 @@ namespace Console
                 {
                     System.Console.WriteLine("PROGRAM DO OBLICZANIA WYNAGRODZENIA ZA NADGODZINY (DODATEK 50%)\n");
                     var monthsWorkingHoursConfiguration
-                        = JsonFileTranslator.ReadFrom<Dictionary<int, int>>("MonthConfig.json");
+                        = JsonFileConverter.ConvertFromFile<Dictionary<int, int>>("MonthConfig.json");
                     var monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
                     var factors = new Factors
                     {

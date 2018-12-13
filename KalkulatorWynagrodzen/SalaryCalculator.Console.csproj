@@ -61,9 +61,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConfigurationFileTranslator\FileTranslator.csproj">
+    <ProjectReference Include="..\ConfigurationFileTranslator\JsonFileConverter.csproj">
       <Project>{5d23fe78-e6af-4a46-8bb4-04d5d760aeb5}</Project>
-      <Name>FileTranslator</Name>
+      <Name>JsonFileConverter</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParsingUtilities\ParsingUtilities.csproj">
       <Project>{e78628d3-a11d-45a4-92ba-82beb6131226}</Project>
