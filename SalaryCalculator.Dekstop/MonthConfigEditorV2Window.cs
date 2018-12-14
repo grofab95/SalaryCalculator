@@ -1,11 +1,11 @@
-﻿using Parsers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Parsers;
 
-namespace SalaryCalculator.Dekstop
+namespace SalaryCalculator.Desktop
 {
     public partial class MonthConfigEditorV2Window : Form
     {

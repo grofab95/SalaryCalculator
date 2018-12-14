@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F6DE349F-350B-45FD-8335-8C50E9FA6D69}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SalaryCalculator.Dekstop</RootNamespace>
-    <AssemblyName>SalaryCalculator.Dekstop</AssemblyName>
+    <RootNamespace>SalaryCalculator.Desktop</RootNamespace>
+    <AssemblyName>SalaryCalculator.Desktop</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -119,10 +119,6 @@
     <ProjectReference Include="..\ConfigurationFileTranslator\JsonFileConverter.csproj">
       <Project>{5d23fe78-e6af-4a46-8bb4-04d5d760aeb5}</Project>
       <Name>JsonFileConverter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KalkulatorWynagrodzen\SalaryCalculator.Console.csproj">
-      <Project>{4838d048-9948-4204-9127-5662fb22a5d4}</Project>
-      <Name>SalaryCalculator.Console</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParsingUtilities\Parsers.csproj">
       <Project>{e78628d3-a11d-45a4-92ba-82beb6131226}</Project>

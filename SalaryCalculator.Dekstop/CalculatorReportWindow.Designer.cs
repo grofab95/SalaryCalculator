@@ -1,4 +1,4 @@
-﻿namespace SalaryCalculator.Dekstop
+﻿namespace SalaryCalculator.Desktop
 {
     partial class CalculatorReportWindow
     {

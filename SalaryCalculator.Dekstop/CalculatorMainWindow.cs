@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using Parsers;
 using SalaryCalculator.SalaryReport;
 
-namespace SalaryCalculator.Dekstop
+namespace SalaryCalculator.Desktop
 {
     public partial class CalculatorMainWindow : Form
     {

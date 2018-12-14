@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SalaryCalculator.Dekstop
+namespace SalaryCalculator.Desktop
 {
     public partial class MessageBoxForEditorV2 : Form
     {

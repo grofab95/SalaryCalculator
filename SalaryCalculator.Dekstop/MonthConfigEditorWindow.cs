@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace SalaryCalculator.Dekstop
+namespace SalaryCalculator.Desktop
 {
     public partial class MonthConfigEditorWindow : Form
     {
