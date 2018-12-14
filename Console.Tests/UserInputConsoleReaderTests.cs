@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace Console.Tests
+namespace Parsers.Tests
 {
     public class UserInputConsoleReaderTests
     {
@@ -12,7 +12,7 @@ namespace Console.Tests
         [InlineData("strytdfy")]
         public void ValidateReadWorkedHours_For_InvalidUserInput_Throws_InvalidOperationException(string userInput)
         {
-            Assert.Throws<FormatException> (() => Parser.ParseStringToDouble(userInput));
+            Assert.Throws<FormatException> (() => StringParser.StringToDouble(userInput));
         }
         [Theory]
         [InlineData("@")]
@@ -20,7 +20,7 @@ namespace Console.Tests
         [InlineData("gifgker")]
         public void ValidateReadHourlyFee_For_InvalidUserInput_Throws_InvalidOperationException(string userInput)
         {
-            Assert.Throws<FormatException>(() => Parser.ParseStringToDouble(userInput));
+            Assert.Throws<FormatException>(() => StringParser.StringToDouble(userInput));
         }
         [Theory]
         [InlineData("%")]
@@ -28,7 +28,7 @@ namespace Console.Tests
         [InlineData("tingnfs")]
         public void ValidateReadMonth_For_InvalidUserInput_Throws_InvalidOperationException(string userInput)
         {
-            Assert.Throws<FormatException>(() => Parser.ParseStringToInt(userInput));
+            Assert.Throws<FormatException>(() => StringParser.StringToInt(userInput));
         }
     }
 }
