@@ -1,10 +1,8 @@
-﻿using FileTranslator;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SalaryCalculator.Dekstop
+namespace SalaryCalculator.Desktop
 {
     public partial class MonthConfigEditorWindow : Form
     {
@@ -106,12 +104,12 @@ namespace SalaryCalculator.Dekstop
                 }
                 else
                 {
-                    this.Close();
+                    Close();
                 }
             }
             else
             {
-                this.Close();
+                Close();
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 
-namespace FileTranslator
+namespace JsonFileConverter
 {
     public class JsonFileConverter
     {

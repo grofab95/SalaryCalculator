@@ -1,12 +1,7 @@
 ﻿using SalaryCalculator.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace SalaryCalculator.Tests2
+namespace SalaryCalculator.Tests
 {
     public class InputValidationsTests
     {

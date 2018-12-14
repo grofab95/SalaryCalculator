@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SalaryCalculator.SalaryReport
+﻿namespace SalaryCalculator.SalaryReport
 {
     public class Factors
     {

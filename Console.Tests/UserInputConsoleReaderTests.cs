@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using Parsers;
 using Xunit;
 
-namespace Parsers.Tests
+namespace Console.Tests
 {
     public class UserInputConsoleReaderTests
     {
@@ -12,7 +12,7 @@ namespace Parsers.Tests
         [InlineData("strytdfy")]
         public void ValidateReadWorkedHours_For_InvalidUserInput_Throws_InvalidOperationException(string userInput)
         {
-            Assert.Throws<FormatException> (() => StringParser.StringToDouble(userInput));
+            Assert.Throws<FormatException>(() => StringParser.StringToDouble(userInput));
         }
         [Theory]
         [InlineData("@")]
