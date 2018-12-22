@@ -10,27 +10,11 @@ namespace SalaryCalculator.Desktop
         public methodHandler TestNewMonthConfiginInMainWindow;
         private MonthsWorkingHours _monthsWorkingHours;
 
-        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours, ConfigurationEditMode status)
+        public MonthConfigEditorWindow(MonthsWorkingHours monthsWorkingHours)
         {
             _monthsWorkingHours = monthsWorkingHours;
             InitializeComponent();
             WriteMonthConfigFileToTextBox();
-            RunSelectedMethodBasedOnStatusFromMainWindow(status);
-        }
-
-        private void RunSelectedMethodBasedOnStatusFromMainWindow(ConfigurationEditMode status)
-        {
-            switch (status)
-            {
-                case ConfigurationEditMode.FixInvalid:
-                    RestoreLastGoodConfigurationOfMonthConfig();
-                    break;
-                case ConfigurationEditMode.Edit:
-                    SaveNewValueToMonthConfig();
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void WriteMonthConfigFileToTextBox()

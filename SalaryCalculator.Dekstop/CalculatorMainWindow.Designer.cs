@@ -33,23 +33,24 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.Calculate_Button = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.HourlyFee_TextBox = new System.Windows.Forms.TextBox();
+            this.HourlyFee = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.MonthSelect_ComboBox = new System.Windows.Forms.ComboBox();
+            this.MonthsDropDown = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.WorkedHours_TextBox = new System.Windows.Forms.TextBox();
+            this.WorkedHours = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Menu_MenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.About_StripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.Exit_StripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.MonthConfig_StripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.MonthConfigV2_StripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.monthsWorkingHoursBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.monthsWorkingHoursBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -65,17 +66,18 @@
             // 
             // Calculate_Button
             // 
+            this.Calculate_Button.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Calculate_Button.Location = new System.Drawing.Point(275, 202);
             this.Calculate_Button.Name = "Calculate_Button";
             this.Calculate_Button.Size = new System.Drawing.Size(200, 50);
             this.Calculate_Button.TabIndex = 4;
             this.Calculate_Button.Text = "OBLICZ\r\n";
             this.Calculate_Button.UseVisualStyleBackColor = true;
-            this.Calculate_Button.Click += new System.EventHandler(this.Calculate_Button_Click);
+            this.Calculate_Button.Click += new System.EventHandler(this.CalculateAndShowSalaryReport);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.HourlyFee_TextBox);
+            this.groupBox3.Controls.Add(this.HourlyFee);
             this.groupBox3.Location = new System.Drawing.Point(501, 55);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 100);
@@ -83,16 +85,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Wpisz stawkę godzinową";
             // 
-            // HourlyFee_TextBox
+            // HourlyFee
             // 
-            this.HourlyFee_TextBox.Location = new System.Drawing.Point(29, 44);
-            this.HourlyFee_TextBox.Name = "HourlyFee_TextBox";
-            this.HourlyFee_TextBox.Size = new System.Drawing.Size(100, 20);
-            this.HourlyFee_TextBox.TabIndex = 1;
+            this.HourlyFee.Location = new System.Drawing.Point(29, 44);
+            this.HourlyFee.Name = "HourlyFee";
+            this.HourlyFee.Size = new System.Drawing.Size(100, 22);
+            this.HourlyFee.TabIndex = 1;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.MonthSelect_ComboBox);
+            this.groupBox2.Controls.Add(this.MonthsDropDown);
             this.groupBox2.Location = new System.Drawing.Point(52, 55);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
@@ -100,18 +102,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Wybierz miesiąc";
             // 
-            // MonthSelect_ComboBox
+            // MonthsDropDown
             // 
-            this.MonthSelect_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MonthSelect_ComboBox.FormattingEnabled = true;
-            this.MonthSelect_ComboBox.Location = new System.Drawing.Point(25, 44);
-            this.MonthSelect_ComboBox.Name = "MonthSelect_ComboBox";
-            this.MonthSelect_ComboBox.Size = new System.Drawing.Size(134, 21);
-            this.MonthSelect_ComboBox.TabIndex = 0;
+            this.MonthsDropDown.DataSource = this.monthsWorkingHoursBindingSource;
+            this.MonthsDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MonthsDropDown.FormattingEnabled = true;
+            this.MonthsDropDown.Location = new System.Drawing.Point(25, 44);
+            this.MonthsDropDown.Name = "MonthsDropDown";
+            this.MonthsDropDown.Size = new System.Drawing.Size(134, 24);
+            this.MonthsDropDown.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.WorkedHours_TextBox);
+            this.groupBox1.Controls.Add(this.WorkedHours);
             this.groupBox1.Location = new System.Drawing.Point(275, 55);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 100);
@@ -119,22 +122,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wpisz liczbę godzin";
             // 
-            // WorkedHours_TextBox
+            // WorkedHours
             // 
-            this.WorkedHours_TextBox.Location = new System.Drawing.Point(35, 43);
-            this.WorkedHours_TextBox.Name = "WorkedHours_TextBox";
-            this.WorkedHours_TextBox.Size = new System.Drawing.Size(100, 20);
-            this.WorkedHours_TextBox.TabIndex = 0;
+            this.WorkedHours.Location = new System.Drawing.Point(35, 43);
+            this.WorkedHours.Name = "WorkedHours";
+            this.WorkedHours.Size = new System.Drawing.Size(100, 22);
+            this.WorkedHours.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Menu_MenuStrip,
-            this.MonthConfig_StripMenu,
-            this.MonthConfigV2_StripMenu});
+            this.MonthConfig_StripMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(752, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(752, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -144,41 +147,39 @@
             this.About_StripMenu,
             this.Exit_StripMenu});
             this.Menu_MenuStrip.Name = "Menu_MenuStrip";
-            this.Menu_MenuStrip.Size = new System.Drawing.Size(50, 20);
+            this.Menu_MenuStrip.Size = new System.Drawing.Size(58, 24);
             this.Menu_MenuStrip.Text = "Menu";
             // 
             // About_StripMenu
             // 
             this.About_StripMenu.Name = "About_StripMenu";
-            this.About_StripMenu.Size = new System.Drawing.Size(141, 22);
+            this.About_StripMenu.Size = new System.Drawing.Size(169, 26);
             this.About_StripMenu.Text = "O programie";
-            this.About_StripMenu.Click += new System.EventHandler(this.About_StripMenu_Click);
+            this.About_StripMenu.Click += new System.EventHandler(this.ShowAboutWindow);
             // 
             // Exit_StripMenu
             // 
             this.Exit_StripMenu.Name = "Exit_StripMenu";
-            this.Exit_StripMenu.Size = new System.Drawing.Size(141, 22);
+            this.Exit_StripMenu.Size = new System.Drawing.Size(169, 26);
             this.Exit_StripMenu.Text = "Wyjdź";
-            this.Exit_StripMenu.Click += new System.EventHandler(this.Exit_StripMenu_Click);
+            this.Exit_StripMenu.Click += new System.EventHandler(this.Exit);
             // 
             // MonthConfig_StripMenu
             // 
             this.MonthConfig_StripMenu.Name = "MonthConfig_StripMenu";
-            this.MonthConfig_StripMenu.Size = new System.Drawing.Size(94, 20);
+            this.MonthConfig_StripMenu.Size = new System.Drawing.Size(112, 24);
             this.MonthConfig_StripMenu.Text = "Month Config";
-            this.MonthConfig_StripMenu.Click += new System.EventHandler(this.MonthConfig_StripMenu_Click);
-            // 
-            // MonthConfigV2_StripMenu
-            // 
-            this.MonthConfigV2_StripMenu.Name = "MonthConfigV2_StripMenu";
-            this.MonthConfigV2_StripMenu.Size = new System.Drawing.Size(110, 20);
-            this.MonthConfigV2_StripMenu.Text = "Month Config V2";
-            this.MonthConfigV2_StripMenu.Click += new System.EventHandler(this.MonthConfigV2_StripMenu_Click);
+            this.MonthConfig_StripMenu.Click += new System.EventHandler(this.ShowConfigurationWindow);
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // monthsWorkingHoursBindingSource
+            // 
+            this.monthsWorkingHoursBindingSource.DataSource = typeof(SalaryCalculator.MonthsWorkingHours);
             // 
             // CalculatorMainWindow
             // 
@@ -198,6 +199,7 @@
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.monthsWorkingHoursBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,20 +208,20 @@
         #endregion
         
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox HourlyFee_TextBox;
+        private System.Windows.Forms.TextBox HourlyFee;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button Calculate_Button;
-        private System.Windows.Forms.TextBox WorkedHours_TextBox;
+        private System.Windows.Forms.TextBox WorkedHours;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem Menu_MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem About_StripMenu;
         private System.Windows.Forms.ToolStripMenuItem Exit_StripMenu;
         private System.Windows.Forms.ToolStripMenuItem MonthConfig_StripMenu;
-        private System.Windows.Forms.ToolStripMenuItem MonthConfigV2_StripMenu;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ComboBox MonthSelect_ComboBox;
+        private System.Windows.Forms.ComboBox MonthsDropDown;
+        private System.Windows.Forms.BindingSource monthsWorkingHoursBindingSource;
     }
 }
 
