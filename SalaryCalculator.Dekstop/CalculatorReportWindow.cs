@@ -5,15 +5,12 @@ namespace SalaryCalculator.Desktop
 {
     public partial class CalculatorReportWindow : Form
     {
-        public CalculatorReportWindow(string reportFromMainWindows)
+        public CalculatorReportWindow(string reportText)
         {
             InitializeComponent();
-            report_textBox.Text = reportFromMainWindows;
+            report_textBox.Text = reportText;
         }
 
-        private void BackToMainWindow_Button_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void BackToMainWindow_Button_Click(object sender, EventArgs e) => Close();
     }
 }

@@ -28,6 +28,6 @@ namespace SalaryCalculator.Desktop
             MessageBox.Show(((Exception)exceptionEventArgs.ExceptionObject).Message, 
                 TextualRessources.FatalError, 
                 MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+                MessageBoxIcon.Stop);
     }  
 }

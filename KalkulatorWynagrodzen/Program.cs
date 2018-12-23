@@ -25,7 +25,7 @@ namespace SalaryCalculator.Console
                     };
                     var monthSalaryReport = new MonthSalaryReport(monthsWorkingHours, factors);
                     var textReport = new SimpleTextReportBuilder()
-                        .BuildMontlhyReport(monthSalaryReport);
+                        .BuildMonthlyReport(monthSalaryReport);
                     System.Console.WriteLine(textReport);
                 }
                 catch (Exception ex)

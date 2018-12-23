@@ -59,5 +59,32 @@ namespace SalaryCalculator.Desktop.Errors {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid configuration was given..
+        /// </summary>
+        internal static string InvalidMonthConfiguration {
+            get {
+                return ResourceManager.GetString("InvalidMonthConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hourly fee is missing..
+        /// </summary>
+        internal static string MissingHourlyFee {
+            get {
+                return ResourceManager.GetString("MissingHourlyFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Worked hours count is missing..
+        /// </summary>
+        internal static string MissingWorkedHours {
+            get {
+                return ResourceManager.GetString("MissingWorkedHours", resourceCulture);
+            }
+        }
     }
 }

@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Application" xml:space="preserve">
+    <value>Program</value>
+  </data>
   <data name="Author" xml:space="preserve">
     <value>Autor</value>
+  </data>
+  <data name="CalculatorTitle" xml:space="preserve">
+    <value>Oblicza miesięczną wypłatę uwzględniając nadgodziny (dodatek 50%).</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Błąd</value>
   </data>
   <data name="FatalError" xml:space="preserve">
     <value>Błąd krytyczny</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="MonthConfiguration" xml:space="preserve">
+    <value>Konfiguracja roboczogodzin/miesiąc</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Wersja</value>

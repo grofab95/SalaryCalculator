@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Parsers;
+using SalaryCalculator.Desktop.Errors;
 using SalaryCalculator.SalaryReport;
 
 namespace SalaryCalculator.Desktop
@@ -13,9 +14,19 @@ namespace SalaryCalculator.Desktop
         private MonthsWorkingHours _monthsWorkingHours;
         public CalculatorMainWindow()
         {
-            LoadMonthConfig();
             InitializeComponent();
-            FillMonthsList(_monthsWorkingHours);       
+            _monthsWorkingHours = LoadMonthsWorkingHoursFromConfiguration();
+            FillMonthsList(_monthsWorkingHours);
+            ConfigureMonthsDropDownMember();
+            this.Localize();
+        }
+
+        private MonthsWorkingHours LoadMonthsWorkingHoursFromConfiguration()
+        {
+            var monthsWorkingHoursConfiguration =
+                JsonFileConverter.JsonFileConverter.ConvertFromFile<Dictionary<int, int>>
+                    ("MonthConfig.json");
+            return new MonthsWorkingHours(monthsWorkingHoursConfiguration);
         }
 
         private void FillMonthsList(MonthsWorkingHours monthsWorkingHoursConfiguration)
@@ -23,22 +34,19 @@ namespace SalaryCalculator.Desktop
             MonthsDropDown.DataSource = Enumerable.Range(1, 12).Select(monthNo =>
             {
                 var monthWorkingHours = monthsWorkingHoursConfiguration[monthNo];
-                return new
+                return new MonthsDropDownItem
                 {
                     MonthName = $"{Month.NumberToName(monthNo)} ({monthWorkingHours}h)",
                     Hours = monthsWorkingHoursConfiguration[monthNo]
                 };
             }).ToList();
-            MonthsDropDown.DisplayMember = "MonthName";
-            MonthsDropDown.ValueMember = "Hours";
         }
 
-        private void LoadMonthConfig()
+        private void ConfigureMonthsDropDownMember()
         {
-            var monthsWorkingHoursConfiguration =
-                JsonFileConverter.JsonFileConverter.ConvertFromFile<Dictionary<int, int>>
-                    ($"{MonthConfigPaths.MonthConfig}.json");
-            _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
+            MonthsDropDownItem monthsDropDownItem;
+            MonthsDropDown.DisplayMember = nameof(monthsDropDownItem.MonthName);
+            MonthsDropDown.ValueMember = nameof(monthsDropDownItem.Hours);
         }
 
         private void CalculateAndShowSalaryReport(object sender, EventArgs e)
@@ -46,23 +54,61 @@ namespace SalaryCalculator.Desktop
             var factors = new Factors
             {
                 WorkedHours = StringParser.StringToDouble(
-                    string.IsNullOrEmpty(WorkedHours.Text) ? throw new Exception() : WorkedHours.Text),
-                HourlyFee = StringParser.StringToDouble(HourlyFee.Text
-                                                        ?? throw new ArgumentNullException(nameof(HourlyFee))),
+                    string.IsNullOrEmpty(WorkedHours.Text) 
+                        ? throw new ArgumentException(ErrorMessages.MissingWorkedHours) 
+                        : WorkedHours.Text),
+                HourlyFee = StringParser.StringToDouble(
+                    string.IsNullOrEmpty(HourlyFee.Text) 
+                        ? throw new ArgumentException(ErrorMessages.MissingHourlyFee) 
+                        : HourlyFee.Text),
                 WorkedMonth = MonthsDropDown.SelectedIndex + 1
             };
             var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors);
             var textReport = new SimpleTextReportBuilder()
-                .BuildMontlhyReport(monthSalaryReport);
+                .BuildMonthlyReport(monthSalaryReport);
             new CalculatorReportWindow(textReport).ShowDialog();
         }
 
         private void ShowAboutWindow(object sender, EventArgs e) =>
             MessageBox.Show($"{TextualRessources.Author}: Fabian Grochla, {TextualRessources.Version}: {Assembly.GetExecutingAssembly().GetName().Version}");
 
-        private void Exit(object sender, EventArgs e) => Application.Exit();
+        private void ShowConfigurationWindow(object sender, EventArgs e)
+        {
+            var configurationWindow = new MonthConfigEditorWindow();
+            configurationWindow.ConfigurationSavedEvent += ConfigurationWindow_ConfigurationSavedEvent;
+            configurationWindow.ShowDialog();
+        }
 
-        private void ShowConfigurationWindow(object sender, EventArgs e) =>
-            new MonthConfigEditorWindow(_monthsWorkingHours).ShowDialog();
+        private void ConfigurationWindow_ConfigurationSavedEvent()
+        {
+            _monthsWorkingHours = LoadMonthsWorkingHoursFromConfiguration();
+            FillMonthsList(_monthsWorkingHours);
+        }
+
+        private void Exit(object sender, EventArgs e) => System.Windows.Forms.Application.Exit();
+
+        private void SetPolishLanguage_Click(object sender, EventArgs e)
+        {
+            if (SetPolishLanguage.Checked)
+            {
+                return;
+            }
+            LanguageSwitch.ToPolish();
+            this.Localize();
+            SetEnglishLanguage.Checked = false;
+            SetPolishLanguage.Checked = true;
+        }
+
+        private void SetEnglishLanguage_Click(object sender, EventArgs e)
+        {
+            if (SetEnglishLanguage.Checked)
+            {
+                return;
+            }
+            LanguageSwitch.ToEnglish();
+            this.Localize();
+            SetEnglishLanguage.Checked = true;
+            SetPolishLanguage.Checked = false;
+        }
     }
 }

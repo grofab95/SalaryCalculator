@@ -61,11 +61,29 @@ namespace SalaryCalculator.Desktop {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application.
+        /// </summary>
+        internal static string Application {
+            get {
+                return ResourceManager.GetString("Application", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
         internal static string Author {
             get {
                 return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculates salary including overhours (50% addition)..
+        /// </summary>
+        internal static string CalculatorTitle {
+            get {
+                return ResourceManager.GetString("CalculatorTitle", resourceCulture);
             }
         }
         
@@ -84,6 +102,24 @@ namespace SalaryCalculator.Desktop {
         internal static string FatalError {
             get {
                 return ResourceManager.GetString("FatalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working hours/month configuration.
+        /// </summary>
+        internal static string MonthConfiguration {
+            get {
+                return ResourceManager.GetString("MonthConfiguration", resourceCulture);
             }
         }
         

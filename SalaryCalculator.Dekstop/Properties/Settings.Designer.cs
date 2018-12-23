@@ -22,5 +22,14 @@ namespace SalaryCalculator.Desktop.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MonthConfig.json")]
+        public string MonthConfigurationFile {
+            get {
+                return ((string)(this["MonthConfigurationFile"]));
+            }
+        }
     }
 }
