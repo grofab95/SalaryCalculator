@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Parsers;
+using SalaryCalculator.Desktop.Errors;
 using SalaryCalculator.SalaryReport;
 
 namespace SalaryCalculator.Desktop
@@ -11,129 +14,101 @@ namespace SalaryCalculator.Desktop
         private MonthsWorkingHours _monthsWorkingHours;
         public CalculatorMainWindow()
         {
-            LoadMonthConfig();
             InitializeComponent();
-            RefreshMonthSelect_ComboBox();
+            _monthsWorkingHours = LoadMonthsWorkingHoursFromConfiguration();
+            FillMonthsList(_monthsWorkingHours);
+            ConfigureMonthsDropDownMember();
+            this.Localize();
         }
 
-        private void LoadMonthConfig()
+        private MonthsWorkingHours LoadMonthsWorkingHoursFromConfiguration()
         {
-            var monthsWorkingHoursConfiguration
-                           = JsonFileConverter.JsonFileConverter.ConvertFromFile<Dictionary<int, int>>($"{MonthConfigPaths.MonthConfig}.json");
-            _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
+            var monthsWorkingHoursConfiguration =
+                JsonFileConverter.JsonFileConverter.ConvertFromFile<Dictionary<int, int>>
+                    ("MonthConfig.json");
+            return new MonthsWorkingHours(monthsWorkingHoursConfiguration);
         }
 
-        private void RefreshMonthSelect_ComboBox()
+        private void FillMonthsList(MonthsWorkingHours monthsWorkingHoursConfiguration)
         {
-            MonthSelect_ComboBox.Items.Clear();
-            var comboBoxItemWithMonth = new System.Object[12];
-            for (int i = 0; i <= 11; i++)
+            MonthsDropDown.DataSource = Enumerable.Range(1, 12).Select(monthNo =>
             {
-                comboBoxItemWithMonth[i] = $"{Month.NumberToName(i + 1)}  ({_monthsWorkingHours[i + 1]} h)";
-            }
-            MonthSelect_ComboBox.Items.AddRange(comboBoxItemWithMonth);
-            MonthSelect_ComboBox.Refresh();
-            MonthSelect_ComboBox.SelectedIndex = 0;
-        }
-
-        private bool IsWorkedHoursAndHourlyFeeTextBoxesFilled()
-        {
-            if (WorkedHours_TextBox.Text == "" || HourlyFee_TextBox.Text == "")
-            {
-                MessageBox.Show("Nie uzupełniono wszystkich pól!", "Uwaga!");
-                return false;
-            }
-            return true;
-        }
-
-        private void Calculate_Button_Click(object sender, EventArgs e)
-        {
-            if (IsWorkedHoursAndHourlyFeeTextBoxesFilled())
-            {
-                try
+                var monthWorkingHours = monthsWorkingHoursConfiguration[monthNo];
+                return new MonthsDropDownItem
                 {
-                    var factors = new Factors
-                    {
-                        WorkedHours = StringParser.StringToDouble(WorkedHours_TextBox.Text),
-                        HourlyFee = StringParser.StringToDouble(HourlyFee_TextBox.Text),
-                        WorkedMonth = MonthSelect_ComboBox.SelectedIndex + 1
-                    };
-                    var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors);
-                    var textReport = new SimpleTextReportBuilder()
-                        .BuildMontlhyReport(monthSalaryReport);
-                    new CalculatorReportWindow(textReport).ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{ex.Message}", "BŁĄD!!!");
-                }
-            }
+                    MonthName = $"{Month.NumberToName(monthNo)} ({monthWorkingHours}h)",
+                    Hours = monthsWorkingHoursConfiguration[monthNo]
+                };
+            }).ToList();
         }
 
-        private void About_StripMenu_Click(object sender, EventArgs e)
+        private void ConfigureMonthsDropDownMember()
         {
-            MessageBox.Show("Autor: Fabian Grochla \n" +
-                            "Wersja: 1.3");
+            MonthsDropDownItem monthsDropDownItem;
+            MonthsDropDown.DisplayMember = nameof(monthsDropDownItem.MonthName);
+            MonthsDropDown.ValueMember = nameof(monthsDropDownItem.Hours);
         }
 
-        private void Exit_StripMenu_Click(object sender, EventArgs e)
+        private void CalculateAndShowSalaryReport(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
-
-        private void RunMonthConfigEditorWindow(ConfigurationEditMode status)
-        {
-            var monthConfigEditorWindow = new MonthConfigEditorWindow(_monthsWorkingHours, status);
-            monthConfigEditorWindow.TestNewMonthConfiginInMainWindow
-                += TestNewMonthConfiginInMainWindow;
-            monthConfigEditorWindow.ShowDialog();
-        }
-
-        private void RunMonthConfigEditorV2Window(ConfigurationEditMode status)
-        {
-            var monthConfigEditorV2Window = new MonthConfigEditorV2Window(_monthsWorkingHours, status);
-            monthConfigEditorV2Window.RestartMonthConfigEditorV2Window
-                += RestartMonthConfigEditorV2Window;
-            monthConfigEditorV2Window.ShowDialog();
-        }
-
-        private void RestartMonthConfigEditorV2Window(MonthConfigEditorV2Window monthConfigEditorV2Window)
-        {
-            monthConfigEditorV2Window.Close();
-            LoadMonthConfig();
-            RefreshMonthSelect_ComboBox();
-            RunMonthConfigEditorV2Window(ConfigurationEditMode.Edit);
-        }
-
-        private void TestNewMonthConfiginInMainWindow(MonthConfigEditorWindow monthConfigEditorWindow)
-        {
-            var isConfigurationValid = true;
-            monthConfigEditorWindow.Close();
-            try
+            var factors = new Factors
             {
-                LoadMonthConfig();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"{e.Message}", "Uwaga!");
-                RunMonthConfigEditorWindow(ConfigurationEditMode.FixInvalid);
-                isConfigurationValid = false;
-            }
-            if (isConfigurationValid)
-            {
-                RefreshMonthSelect_ComboBox();
-                RunMonthConfigEditorWindow(ConfigurationEditMode.Edit);
-            }
+                WorkedHours = StringParser.StringToDouble(
+                    string.IsNullOrEmpty(WorkedHours.Text) 
+                        ? throw new ArgumentException(ErrorMessages.MissingWorkedHours) 
+                        : WorkedHours.Text),
+                HourlyFee = StringParser.StringToDouble(
+                    string.IsNullOrEmpty(HourlyFee.Text) 
+                        ? throw new ArgumentException(ErrorMessages.MissingHourlyFee) 
+                        : HourlyFee.Text),
+                WorkedMonth = MonthsDropDown.SelectedIndex + 1
+            };
+            var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors);
+            var textReport = new SimpleTextReportBuilder()
+                .BuildMonthlyReport(monthSalaryReport);
+            new CalculatorReportWindow(textReport).ShowDialog();
         }
 
-        private void MonthConfig_StripMenu_Click(object sender, EventArgs e)
+        private void ShowAboutWindow(object sender, EventArgs e) =>
+            MessageBox.Show($"{TextualRessources.Author}: Fabian Grochla, {TextualRessources.Version}: {Assembly.GetExecutingAssembly().GetName().Version}");
+
+        private void ShowConfigurationWindow(object sender, EventArgs e)
         {
-            RunMonthConfigEditorWindow(ConfigurationEditMode.Normal);
+            var configurationWindow = new MonthConfigEditorWindow();
+            configurationWindow.ConfigurationSavedEvent += ConfigurationWindow_ConfigurationSavedEvent;
+            configurationWindow.ShowDialog();
         }
 
-        private void MonthConfigV2_StripMenu_Click(object sender, EventArgs e)
+        private void ConfigurationWindow_ConfigurationSavedEvent()
         {
-            RunMonthConfigEditorV2Window(ConfigurationEditMode.Normal);
+            _monthsWorkingHours = LoadMonthsWorkingHoursFromConfiguration();
+            FillMonthsList(_monthsWorkingHours);
+        }
+
+        private void Exit(object sender, EventArgs e) => System.Windows.Forms.Application.Exit();
+
+        private void SetPolishLanguage_Click(object sender, EventArgs e)
+        {
+            if (SetPolishLanguage.Checked)
+            {
+                return;
+            }
+            LanguageSwitch.ToPolish();
+            this.Localize();
+            SetEnglishLanguage.Checked = false;
+            SetPolishLanguage.Checked = true;
+        }
+
+        private void SetEnglishLanguage_Click(object sender, EventArgs e)
+        {
+            if (SetEnglishLanguage.Checked)
+            {
+                return;
+            }
+            LanguageSwitch.ToEnglish();
+            this.Localize();
+            SetEnglishLanguage.Checked = true;
+            SetPolishLanguage.Checked = false;
         }
     }
 }

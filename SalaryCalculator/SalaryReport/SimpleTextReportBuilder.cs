@@ -5,7 +5,7 @@ namespace SalaryCalculator.SalaryReport
 {
     public class SimpleTextReportBuilder
     {
-        public string BuildMontlhyReport(MonthSalaryReport monthSalaryReport)
+        public string BuildMonthlyReport(MonthSalaryReport monthSalaryReport)
         {
             var report = new StringBuilder();
             report

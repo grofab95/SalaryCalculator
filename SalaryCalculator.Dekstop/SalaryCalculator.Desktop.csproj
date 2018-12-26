@@ -33,8 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -54,43 +58,45 @@
     <Compile Include="CalculatorReportWindow.Designer.cs">
       <DependentUpon>CalculatorReportWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfigurationEditMode.cs" />
-    <Compile Include="ErrorType.cs" />
-    <Compile Include="MessageBoxForEditorV2.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Errors\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxForEditorV2.Designer.cs">
-      <DependentUpon>MessageBoxForEditorV2.cs</DependentUpon>
-    </Compile>
+    <Compile Include="LanguageSwitch.cs" />
+    <Compile Include="Localizations.cs" />
     <Compile Include="MonthConfigEditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MonthConfigEditorWindow.Designer.cs">
       <DependentUpon>MonthConfigEditorWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="MonthConfigEditorV2Window.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MonthConfigEditorV2Window.Designer.cs">
-      <DependentUpon>MonthConfigEditorV2Window.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MonthConfigPaths.cs" />
+    <Compile Include="MonthsDropDownItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextualRessources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextualRessources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TextualRessources.pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TextualRessources.pl.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CalculatorMainWindow.resx">
       <DependentUpon>CalculatorMainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalculatorReportWindow.resx">
       <DependentUpon>CalculatorReportWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageBoxForEditorV2.resx">
-      <DependentUpon>MessageBoxForEditorV2.cs</DependentUpon>
+    <EmbeddedResource Include="Errors\ErrorMessages.pl.resx" />
+    <EmbeddedResource Include="Errors\ErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthConfigEditorWindow.resx">
       <DependentUpon>MonthConfigEditorWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MonthConfigEditorV2Window.resx">
-      <DependentUpon>MonthConfigEditorV2Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,6 +108,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TextualRessources.pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextualRessources.pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextualRessources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextualRessources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\SalaryCalculator.MonthsWorkingHours.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,5 +146,6 @@
       <Name>SalaryCalculator</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
