@@ -175,6 +175,9 @@
       <LastGenOutput>TextualRessources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="MonthConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SalaryCalculator.MonthsWorkingHours.datasource" />
     <None Include="Properties\Settings.settings">
