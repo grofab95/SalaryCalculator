@@ -117,13 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidMonthConfiguration" xml:space="preserve">
-    <value>Wprowadzono niepoprawną konfigurację.</value>
+  <data name="GrossSalary" xml:space="preserve">
+    <value>gross salary:</value>
   </data>
-  <data name="MissingHourlyFee" xml:space="preserve">
-    <value>Nie podano stawki godzinowej.</value>
+  <data name="HourlyRateGross" xml:space="preserve">
+    <value>Hourly rate (gross)</value>
   </data>
-  <data name="MissingWorkedHours" xml:space="preserve">
-    <value>Nie podano liczby przepracowanych godzin.</value>
+  <data name="NetSalary" xml:space="preserve">
+    <value>net salary:</value>
+  </data>
+  <data name="OvertimeHours" xml:space="preserve">
+    <value>Number of overtime hours:</value>
+  </data>
+  <data name="SummaryForTheMonth" xml:space="preserve">
+    <value>Summary for the month</value>
+  </data>
+  <data name="TimeDimension" xml:space="preserve">
+    <value>Time dimension on this date</value>
+  </data>
+  <data name="TotalGrossSalary" xml:space="preserve">
+    <value>Total gross salary (base + overhours):</value>
+  </data>
+  <data name="TotalNetSalary" xml:space="preserve">
+    <value>Total net salary (base + overhours):</value>
+  </data>
+  <data name="WorkingHours" xml:space="preserve">
+    <value>working hours</value>
   </data>
 </root>

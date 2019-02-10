@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SalaryCalculator.SalaryReport;
+using System;
 using System.Text;
 
-namespace SalaryCalculator.SalaryReport
+namespace SalaryCalculator.Desktop
 {
     public class SimpleTextReportBuilder
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SalaryCalculator.Desktop.Errors {
+namespace SalaryCalculator.Desktop.Ressources.Errors {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SalaryCalculator.Desktop.Errors {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SalaryCalculator.Desktop.Errors.ErrorMessages", typeof(ErrorMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SalaryCalculator.Desktop.Ressources.Errors.ErrorMessages", typeof(ErrorMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,38 @@ namespace SalaryCalculator.Desktop.Errors {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Hourly Fee.
+        /// </summary>
+        internal static string InvalidHourlyFee {
+            get {
+                return ResourceManager.GetString("InvalidHourlyFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Month.
+        /// </summary>
+        internal static string InvalidMonth {
+            get {
+                return ResourceManager.GetString("InvalidMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid configuration was given..
         /// </summary>
         internal static string InvalidMonthConfiguration {
             get {
                 return ResourceManager.GetString("InvalidMonthConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Worked Hours.
+        /// </summary>
+        internal static string InvalidWorkedHours {
+            get {
+                return ResourceManager.GetString("InvalidWorkedHours", resourceCulture);
             }
         }
         
@@ -84,6 +111,24 @@ namespace SalaryCalculator.Desktop.Errors {
         internal static string MissingWorkedHours {
             get {
                 return ResourceManager.GetString("MissingWorkedHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not supported error type, error type is:.
+        /// </summary>
+        internal static string NotSupportedExceptionType {
+            get {
+                return ResourceManager.GetString("NotSupportedExceptionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No message found for the error. Error Type is:.
+        /// </summary>
+        internal static string NotTranslatedError {
+            get {
+                return ResourceManager.GetString("NotTranslatedError", resourceCulture);
             }
         }
     }

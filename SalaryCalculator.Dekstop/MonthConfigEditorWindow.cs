@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using SalaryCalculator.Desktop.Properties;
+using SalaryCalculator.Desktop.Ressources;
 
 namespace SalaryCalculator.Desktop
 {
@@ -14,32 +15,54 @@ namespace SalaryCalculator.Desktop
         {
             InitializeComponent();
             WriteMonthConfigFileToTextBox();
+            this.Localize();
         }
 
-        private void WriteMonthConfigFileToTextBox() => MonthConfiguration.Text = ReadConfiguration();
+        private void WriteMonthConfigFileToTextBox()
+        {
+            MonthConfiguration.Text = ReadConfiguration();
+        }
 
-        private string ReadConfiguration() => File.ReadAllText(Settings.Default.MonthConfigurationFile);
+        private string ReadConfiguration()
+        {
+            return File.ReadAllText(Settings.Default.MonthConfigurationFile);
+        }
 
-        private bool IsMonthConfigTextBoxChanged() => ReadConfiguration() != MonthConfiguration.Text;
+        private bool IsMonthConfigTextBoxChanged()
+        {
+            return ReadConfiguration() != MonthConfiguration.Text;
+        }
 
         private void SaveConfiguration()
         {
             ValidateConfiguration();
             File.WriteAllText(Settings.Default.MonthConfigurationFile, MonthConfiguration.Text);
-            MessageBox.Show("Zapisano zmiany.");
+            MessageBox.Show($"{TextualRessources.ChangesWasSave}", "Info");
             ConfigurationSavedEvent?.Invoke();
         }
 
-        private void ValidateConfiguration() => new MonthsWorkingHours(
+        private void ValidateConfiguration()
+        {
+            new MonthsWorkingHours(
             JsonConvert.DeserializeObject<Dictionary<int, int>>(MonthConfiguration.Text));
+        }
 
-        private void Save_StripMenu_Click(object sender, EventArgs e) => SaveConfiguration();
-
-        private void Exit_StripMenu_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
             if (IsMonthConfigTextBoxChanged())
             {
-                if (MessageBox.Show("Wprowadzono zmiany, czy chcesz je zapisać?", "Uwaga!",
+                SaveConfiguration();
+            } else
+            {
+                MessageBox.Show($"{TextualRessources.NoChangesMade}", "Info");
+            }
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            if (IsMonthConfigTextBoxChanged())
+            {
+                if (MessageBox.Show($"{TextualRessources.UnsavedChangesWhileExit}", $"{TextualRessources.Attention}",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     SaveConfiguration();

@@ -2,7 +2,7 @@
 
 namespace SalaryCalculator
 {
-    public class Month
+    public static class Month
     {
         private static readonly string[] MonthsNames = { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
             "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" };

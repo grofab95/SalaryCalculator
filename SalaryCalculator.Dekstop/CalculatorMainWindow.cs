@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Parsers;
-using SalaryCalculator.Desktop.Errors;
+using SalaryCalculator.Desktop.Ressources;
+using SalaryCalculator.Desktop.Ressources.Errors;
 using SalaryCalculator.SalaryReport;
 
 namespace SalaryCalculator.Desktop
@@ -14,6 +16,7 @@ namespace SalaryCalculator.Desktop
         private MonthsWorkingHours _monthsWorkingHours;
         public CalculatorMainWindow()
         {
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.CurrentCulture;
             InitializeComponent();
             _monthsWorkingHours = LoadMonthsWorkingHoursFromConfiguration();
             FillMonthsList(_monthsWorkingHours);
@@ -36,7 +39,7 @@ namespace SalaryCalculator.Desktop
                 var monthWorkingHours = monthsWorkingHoursConfiguration[monthNo];
                 return new MonthsDropDownItem
                 {
-                    MonthName = $"{Month.NumberToName(monthNo)} ({monthWorkingHours}h)",
+                    MonthName = $"{CultureInfo.DefaultThreadCurrentUICulture.DateTimeFormat.GetMonthName(monthNo)} ({monthWorkingHours} h)",
                     Hours = monthsWorkingHoursConfiguration[monthNo]
                 };
             }).ToList();
@@ -85,9 +88,10 @@ namespace SalaryCalculator.Desktop
             FillMonthsList(_monthsWorkingHours);
         }
 
-        private void Exit(object sender, EventArgs e) => System.Windows.Forms.Application.Exit();
+        private void Exit(object sender, EventArgs e) => 
+            System.Windows.Forms.Application.Exit();
 
-        private void SetPolishLanguage_Click(object sender, EventArgs e)
+        public void SetPolishLanguage_Click(object sender, EventArgs e)
         {
             if (SetPolishLanguage.Checked)
             {
@@ -95,11 +99,12 @@ namespace SalaryCalculator.Desktop
             }
             LanguageSwitch.ToPolish();
             this.Localize();
+            FillMonthsList(_monthsWorkingHours);
             SetEnglishLanguage.Checked = false;
             SetPolishLanguage.Checked = true;
         }
 
-        private void SetEnglishLanguage_Click(object sender, EventArgs e)
+        public void SetEnglishLanguage_Click(object sender, EventArgs e)
         {
             if (SetEnglishLanguage.Checked)
             {
@@ -107,6 +112,7 @@ namespace SalaryCalculator.Desktop
             }
             LanguageSwitch.ToEnglish();
             this.Localize();
+            FillMonthsList(_monthsWorkingHours);
             SetEnglishLanguage.Checked = true;
             SetPolishLanguage.Checked = false;
         }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SalaryCalculator.Desktop {
+namespace SalaryCalculator.Desktop.Ressources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace SalaryCalculator.Desktop {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TextualRessources {
+    public class ReportTextualRessources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TextualRessources() {
+        internal ReportTextualRessources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SalaryCalculator.Desktop.TextualRessources", typeof(TextualRessources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SalaryCalculator.Desktop.Ressources.ReportTextualRessources", typeof(ReportTextualRessources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace SalaryCalculator.Desktop {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,74 +61,83 @@ namespace SalaryCalculator.Desktop {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Application.
+        ///   Looks up a localized string similar to gross salary:.
         /// </summary>
-        internal static string Application {
+        public static string GrossSalary {
             get {
-                return ResourceManager.GetString("Application", resourceCulture);
+                return ResourceManager.GetString("GrossSalary", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Author.
+        ///   Looks up a localized string similar to Hourly rate (gross).
         /// </summary>
-        internal static string Author {
+        public static string HourlyRateGross {
             get {
-                return ResourceManager.GetString("Author", resourceCulture);
+                return ResourceManager.GetString("HourlyRateGross", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Calculates salary including overhours (50% addition)..
+        ///   Looks up a localized string similar to net salary:.
         /// </summary>
-        internal static string CalculatorTitle {
+        public static string NetSalary {
             get {
-                return ResourceManager.GetString("CalculatorTitle", resourceCulture);
+                return ResourceManager.GetString("NetSalary", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
+        ///   Looks up a localized string similar to Number of overtime hours:.
         /// </summary>
-        internal static string Error {
+        public static string OvertimeHours {
             get {
-                return ResourceManager.GetString("Error", resourceCulture);
+                return ResourceManager.GetString("OvertimeHours", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fatal error.
+        ///   Looks up a localized string similar to Summary for the month.
         /// </summary>
-        internal static string FatalError {
+        public static string SummaryForTheMonth {
             get {
-                return ResourceManager.GetString("FatalError", resourceCulture);
+                return ResourceManager.GetString("SummaryForTheMonth", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language.
+        ///   Looks up a localized string similar to Time dimension on this date.
         /// </summary>
-        internal static string Language {
+        public static string TimeDimension {
             get {
-                return ResourceManager.GetString("Language", resourceCulture);
+                return ResourceManager.GetString("TimeDimension", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Working hours/month configuration.
+        ///   Looks up a localized string similar to Total gross salary (base + overhours):.
         /// </summary>
-        internal static string MonthConfiguration {
+        public static string TotalGrossSalary {
             get {
-                return ResourceManager.GetString("MonthConfiguration", resourceCulture);
+                return ResourceManager.GetString("TotalGrossSalary", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Version.
+        ///   Looks up a localized string similar to Total net salary (base + overhours):.
         /// </summary>
-        internal static string Version {
+        public static string TotalNetSalary {
             get {
-                return ResourceManager.GetString("Version", resourceCulture);
+                return ResourceManager.GetString("TotalNetSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to working hours.
+        /// </summary>
+        public static string WorkingHours {
+            get {
+                return ResourceManager.GetString("WorkingHours", resourceCulture);
             }
         }
     }

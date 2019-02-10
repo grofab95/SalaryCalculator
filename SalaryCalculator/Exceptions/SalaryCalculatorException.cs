@@ -4,7 +4,7 @@ namespace SalaryCalculator.Exceptions
 {
     public class SalaryCalculatorException: Exception
     {
-        public SalaryCalculatorException(string exceptionMessage) : base(exceptionMessage)
+        protected SalaryCalculatorException(string exceptionMessage) : base(exceptionMessage)
         {
         }
     }

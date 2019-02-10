@@ -117,28 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Application" xml:space="preserve">
-    <value>Program</value>
+  <data name="GrossSalary" xml:space="preserve">
+    <value>wynagrodzenie brutto:</value>
   </data>
-  <data name="Author" xml:space="preserve">
-    <value>Autor</value>
+  <data name="HourlyRateGross" xml:space="preserve">
+    <value>Stawka godzinowa (brutto)</value>
   </data>
-  <data name="CalculatorTitle" xml:space="preserve">
-    <value>Oblicza miesięczną wypłatę uwzględniając nadgodziny (dodatek 50%).</value>
+  <data name="NetSalary" xml:space="preserve">
+    <value>wynagrodzenie netto:</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Błąd</value>
+  <data name="OvertimeHours" xml:space="preserve">
+    <value>Liczba nadgodzin:</value>
   </data>
-  <data name="FatalError" xml:space="preserve">
-    <value>Błąd krytyczny</value>
+  <data name="SummaryForTheMonth" xml:space="preserve">
+    <value>Podsumowanie dla miesiąca</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Język</value>
+  <data name="TimeDimension" xml:space="preserve">
+    <value>Wymiar czasu pracy w tym miesiącu</value>
   </data>
-  <data name="MonthConfiguration" xml:space="preserve">
-    <value>Konfiguracja roboczogodzin/miesiąc</value>
+  <data name="TotalGrossSalary" xml:space="preserve">
+    <value>Wynagrodzenie całkowite brutto (podstawa + nadgodziny):</value>
   </data>
-  <data name="Version" xml:space="preserve">
-    <value>Wersja</value>
+  <data name="TotalNetSalary" xml:space="preserve">
+    <value>Wynagrodzenie całkowite netto (podstawa + nadgodziny):</value>
+  </data>
+  <data name="WorkingHours" xml:space="preserve">
+    <value>przepracowano</value>
   </data>
 </root>

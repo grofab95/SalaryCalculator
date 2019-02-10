@@ -9,6 +9,7 @@ namespace SalaryCalculator.Desktop
         {
             InitializeComponent();
             report_textBox.Text = reportText;
+            this.Localize();
         }
 
         private void BackToMainWindow_Button_Click(object sender, EventArgs e) => Close();

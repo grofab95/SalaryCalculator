@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,7 +73,7 @@
     <Compile Include="CalculatorReportWindow.Designer.cs">
       <DependentUpon>CalculatorReportWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Errors\ErrorMessages.Designer.cs">
+    <Compile Include="Ressources\Errors\ErrorMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ErrorMessages.resx</DependentUpon>
@@ -72,31 +87,66 @@
       <DependentUpon>MonthConfigEditorWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="MonthsDropDownItem.cs" />
+    <Compile Include="Ressources\MonthTextualRessources.Designer.cs">
+      <DependentUpon>MonthTextualRessources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ressources\MonthTextualRessources.pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthTextualRessources.pl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextualRessources.Designer.cs">
+    <Compile Include="Ressources\ReportTextualRessources.Designer.cs">
+      <DependentUpon>ReportTextualRessources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Ressources\ReportTextualRessources.pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportTextualRessources.pl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ressources\TextualRessources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TextualRessources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TextualRessources.pl.Designer.cs">
+    <Compile Include="Ressources\TextualRessources.pl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TextualRessources.pl.resx</DependentUpon>
     </Compile>
+    <Compile Include="SimpleTextReportBuilder.cs" />
+    <EmbeddedResource Include="CalculatorMainWindow.ar-BH.resx">
+      <DependentUpon>CalculatorMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalculatorMainWindow.en.resx">
+      <DependentUpon>CalculatorMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CalculatorMainWindow.resx">
       <DependentUpon>CalculatorMainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalculatorReportWindow.resx">
       <DependentUpon>CalculatorReportWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Errors\ErrorMessages.pl.resx" />
-    <EmbeddedResource Include="Errors\ErrorMessages.resx">
+    <EmbeddedResource Include="Ressources\Errors\ErrorMessages.pl.resx" />
+    <EmbeddedResource Include="Ressources\Errors\ErrorMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MonthConfigEditorWindow.resx">
       <DependentUpon>MonthConfigEditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\MonthTextualRessources.pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MonthTextualRessources.pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\MonthTextualRessources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MonthTextualRessources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -108,12 +158,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TextualRessources.pl.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="Ressources\ReportTextualRessources.pl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportTextualRessources.pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\ReportTextualRessources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportTextualRessources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\TextualRessources.pl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TextualRessources.pl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextualRessources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="Ressources\TextualRessources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TextualRessources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -146,6 +204,17 @@
       <Name>SalaryCalculator</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

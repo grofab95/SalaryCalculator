@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InvalidMonthConfiguration" xml:space="preserve">
-    <value>Invalid configuration was given.</value>
+  <data name="April" xml:space="preserve">
+    <value>Kwiecień</value>
   </data>
-  <data name="MissingHourlyFee" xml:space="preserve">
-    <value>Hourly fee is missing.</value>
+  <data name="August" xml:space="preserve">
+    <value>Sierpień</value>
   </data>
-  <data name="MissingWorkedHours" xml:space="preserve">
-    <value>Worked hours count is missing.</value>
+  <data name="December" xml:space="preserve">
+    <value>Grudzień</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Luty</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Styczeń</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Lipiec</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Czerwiec</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Marzec</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Maj</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Listopad</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Październik</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Wrzesień</value>
   </data>
 </root>

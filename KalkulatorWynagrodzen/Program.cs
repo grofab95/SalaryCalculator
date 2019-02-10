@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Parsers;
+using SalaryCalculator.Desktop;
 using SalaryCalculator.SalaryReport;
 
 namespace SalaryCalculator.Console
