@@ -3,7 +3,7 @@
     public class InvalidMonth : SalaryCalculatorException
     {
         private static string exceptionMessage =
-            "Niepoprawny miesiąc";
+            "Invalid month";
 
         public InvalidMonth() : base(exceptionMessage)
         { }

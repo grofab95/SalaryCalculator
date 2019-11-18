@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConfigurationFileTranslator\JsonFileConverter.csproj" />
+    <ProjectReference Include="..\ParsingUtilities\Parsers.csproj" />
+    <ProjectReference Include="..\SalaryCalculator\SalaryCalculator.csproj" />
+  </ItemGroup>
+
+</Project>

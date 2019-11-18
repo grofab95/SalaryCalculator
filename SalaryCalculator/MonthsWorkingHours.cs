@@ -7,6 +7,7 @@ namespace SalaryCalculator
         private readonly Dictionary<int, int> _monthsWorkingHoursDictionary;
         private const int MaxWorkingHoursPerMonth = 200;
         private const int MinWorkingHoursPerMonth = 100;
+
         public MonthsWorkingHours(Dictionary<int, int> monthsWorkingHoursDictionary)
         {
             ValidateConfiguration(monthsWorkingHoursDictionary);

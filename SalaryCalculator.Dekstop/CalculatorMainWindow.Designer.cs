@@ -48,8 +48,6 @@
             this.SetPolishLanguage = new System.Windows.Forms.ToolStripMenuItem();
             this.SetEnglishLanguage = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.HourlyFeeInput_TextBox.SuspendLayout();
             this.MonthSelect_TextBox.SuspendLayout();
@@ -179,21 +177,9 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // textBox1
-            // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
-            // 
             // CalculatorMainWindow
             // 
             resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -232,8 +218,6 @@
         protected internal System.Windows.Forms.ToolStripMenuItem SetPolishLanguage;
         protected internal System.Windows.Forms.ToolStripMenuItem SetEnglishLanguage;
         protected internal System.Windows.Forms.ToolStripMenuItem MonthConfiguration;
-        protected internal System.Windows.Forms.Label label1;
-        protected internal System.Windows.Forms.TextBox textBox1;
     }
 }
 

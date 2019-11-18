@@ -5,7 +5,7 @@ namespace SalaryCalculator
     public class InvalidMonthWorkingHoursConfiguration : SalaryCalculatorException
     {
         private static string exceptionMessage = 
-            "Niepoprawna konfiguracja roboczogodzin na miesiąc.";
+            "Invalid month working hours configuration.";
 
         public InvalidMonthWorkingHoursConfiguration() : base(exceptionMessage)
         {}

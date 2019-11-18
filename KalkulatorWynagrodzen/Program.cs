@@ -35,7 +35,7 @@ namespace SalaryCalculator.Console
                         $"Wystąpił błąd: {ex.Message}{Environment.NewLine}");
                     System.Console.WriteLine("----------------------------------------------------------------");
                     Main();
-                }
+                }                
             }
         }
     }

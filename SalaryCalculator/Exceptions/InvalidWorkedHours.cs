@@ -3,7 +3,7 @@
     public class InvalidWorkedHours : SalaryCalculatorException
     {
         private static string exceptionMessage =
-            "Niepoprawna liczba roboczogodzin.";
+            "Invalid number of worked hours.";
 
         public InvalidWorkedHours() : base(exceptionMessage)
         { }

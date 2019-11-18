@@ -54,22 +54,29 @@ namespace SalaryCalculator.Desktop
 
         private void CalculateAndShowSalaryReport(object sender, EventArgs e)
         {
-            var factors = new Factors
+            try
             {
-                WorkedHours = StringParser.StringToDouble(
-                    string.IsNullOrEmpty(WorkedHours.Text) 
-                        ? throw new ArgumentException(ErrorMessages.MissingWorkedHours) 
-                        : WorkedHours.Text),
-                HourlyFee = StringParser.StringToDouble(
-                    string.IsNullOrEmpty(HourlyFee.Text) 
-                        ? throw new ArgumentException(ErrorMessages.MissingHourlyFee) 
-                        : HourlyFee.Text),
-                WorkedMonth = MonthsDropDown.SelectedIndex + 1
-            };
-            var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors);
-            var textReport = new SimpleTextReportBuilder()
-                .BuildMonthlyReport(monthSalaryReport);
-            new CalculatorReportWindow(textReport).ShowDialog();
+                var factors = new Factors
+                {
+                    WorkedHours = StringParser.StringToDouble(
+                        string.IsNullOrEmpty(WorkedHours.Text)
+                            ? throw new ArgumentException(ErrorMessages.MissingWorkedHours)
+                            : WorkedHours.Text),
+                    HourlyFee = StringParser.StringToDouble(
+                        string.IsNullOrEmpty(HourlyFee.Text)
+                            ? throw new ArgumentException(ErrorMessages.MissingHourlyFee)
+                            : HourlyFee.Text),
+                    WorkedMonth = MonthsDropDown.SelectedIndex + 1
+                };
+                var monthSalaryReport = new MonthSalaryReport(_monthsWorkingHours, factors);
+                var textReport = new SimpleTextReportBuilder()
+                    .BuildMonthlyReport(monthSalaryReport);
+                new CalculatorReportWindow(textReport).ShowDialog();
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Uwaga");
+            }
         }
 
         private void ShowAboutWindow(object sender, EventArgs e) =>

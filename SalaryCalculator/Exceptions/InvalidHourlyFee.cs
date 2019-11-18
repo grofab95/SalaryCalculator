@@ -3,7 +3,7 @@
     public class InvalidHourlyFee : SalaryCalculatorException
     {
         private static string exceptionMessage =
-            "Niepoprawna stawka godzinowa.";
+            "Invalid hourly rate.";
 
         public InvalidHourlyFee() : base(exceptionMessage)
         { }
