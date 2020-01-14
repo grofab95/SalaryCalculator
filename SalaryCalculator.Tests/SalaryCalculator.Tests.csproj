@@ -54,8 +54,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculationsSummaryTests.cs" />
     <Compile Include="CalculatorTests.cs" />
+    <Compile Include="FactorsTests.cs" />
     <Compile Include="InputValidationsTests.cs" />
+    <Compile Include="MonthSalaryReportTests.cs" />
+    <Compile Include="MonthsWorkingHoursTests.cs" />
+    <Compile Include="MonthTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
