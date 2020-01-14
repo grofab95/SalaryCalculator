@@ -13,7 +13,7 @@ namespace SalaryCalculator.Tests
         }
 
         [Fact]
-        public void Prop_WorkedMonth_For_AccessModifiers_Equal_Int()
+        public void Prop_WorkedMonth_For_Type_Equal_Int()
         {
             var actual = _factors.WorkedMonth.GetType();
             var expected = typeof(int);
@@ -21,7 +21,7 @@ namespace SalaryCalculator.Tests
         }
 
         [Fact]
-        public void Prop_WorkedHours_For_AccessModifiers_Equal_Double()
+        public void Prop_WorkedHours_For_Type_Equal_Double()
         {
             var actual = _factors.WorkedHours.GetType();
             var expected = typeof(double);
@@ -29,7 +29,7 @@ namespace SalaryCalculator.Tests
         }
 
         [Fact]
-        public void Prop_HourlyFee_For_AccessModifiers_Equal_Double()
+        public void Prop_HourlyFee_For_Type_Equal_Double()
         {
             var actual = _factors.HourlyFee.GetType();
             var expected = typeof(double);
