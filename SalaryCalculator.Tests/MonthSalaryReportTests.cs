@@ -7,8 +7,6 @@ namespace SalaryCalculator.Tests
     public class MonthSalaryReportTests
     {
         private readonly MonthSalaryReport _monthSalaryReport;
-        private readonly Calculator _calculator;
-        private readonly Factors _factors;
 
         public MonthSalaryReportTests()
         {
@@ -17,21 +15,44 @@ namespace SalaryCalculator.Tests
                     { 1, 150 } 
                 });
 
-            _factors = new Factors() 
+            var factors = new Factors() 
             { 
                 HourlyFee = 13, 
                 WorkedHours = 180, 
                 WorkedMonth = 1 
             };
 
-            _monthSalaryReport = new MonthSalaryReport(monthsWorkingHours, _factors);
-            _calculator = new Calculator(monthsWorkingHours);
+            _monthSalaryReport = new MonthSalaryReport(monthsWorkingHours, factors);
         }
 
         [Fact]
-        public void MonthSalaryReport_For_SummaryOverHoursAmount_Equal_OverHoursAmount()
+        public void MonthSalaryReport_For_SummaryOverHoursAmount_Equal_NotNull()
         {
             Assert.False(_monthSalaryReport.Summary.OverHoursAmount == 0);
+        }
+
+        [Fact]
+        public void MonthSalaryReport_For_SummaryOverHoursGrossIncome_Equal_NotNull()
+        {
+            Assert.False(_monthSalaryReport.Summary.OverHoursGrossIncome == 0);
+        }
+
+        [Fact]
+        public void MonthSalaryReport_For_SummaryOverHoursNetIncomet_Equal_NotNull()
+        {
+            Assert.False(_monthSalaryReport.Summary.OverHoursNetIncome == 0);
+        }
+
+        [Fact]
+        public void MonthSalaryReport_For_SummaryTotalGrossIncome_Equal_NotNull()
+        {
+            Assert.False(_monthSalaryReport.Summary.TotalGrossIncome == 0);
+        }
+
+        [Fact]
+        public void MonthSalaryReport_For_SummaryTotalNetIncome_Equal_NotNull()
+        {
+            Assert.False(_monthSalaryReport.Summary.TotalNetIncome == 0);
         }
     }
 }
