@@ -14,21 +14,14 @@ namespace SalaryCalculator.Api.Controllers
         private CalculationsSummary _summary;
         private Calculator _calculator;
 
-        public SalaryCalculatorController()
+        public SalaryCalculatorController(
+            MonthsWorkingHours monthsWorkingHours,
+            CalculationsSummary calculationsSummary,
+            Calculator calculator)
         {
-            try
-            {
-                var monthsWorkingHoursConfiguration =
-                    JsonFileConverter.JsonFileConverter.ConvertFromFile<Dictionary<int, int>>
-                        ("MonthConfig.json");
-                _monthsWorkingHours = new MonthsWorkingHours(monthsWorkingHoursConfiguration);
-                _summary = new CalculationsSummary();
-                _calculator = new Calculator(_monthsWorkingHours);
-            }
-            catch (Exception exception)
-            {
-                //?
-            }
+            _monthsWorkingHours = monthsWorkingHours;
+            _summary = calculationsSummary;
+            _calculator = calculator;
         }
 
         [HttpGet]
@@ -49,9 +42,9 @@ namespace SalaryCalculator.Api.Controllers
             {
                 StringParser.StringToDouble(factors.WorkedMonth.ToString());
                 StringParser.StringToDouble(factors.HourlyFee.ToString());
-                 _summary.OverHoursAmount = _calculator.CalculateOverhoursAmount(factors.WorkedMonth, factors.WorkedHours);
-                 _summary.OverHoursGrossIncome = _calculator.CalculateOverHoursGrossIncome(_summary.OverHoursAmount, factors.HourlyFee);
-                 _summary.OverHoursNetIncome = _calculator.CalculateOverHoursNetIncome(_summary.OverHoursGrossIncome);
+                _summary.OverHoursAmount = _calculator.CalculateOverhoursAmount(factors.WorkedMonth, factors.WorkedHours);
+                _summary.OverHoursGrossIncome = _calculator.CalculateOverHoursGrossIncome(_summary.OverHoursAmount, factors.HourlyFee);
+                _summary.OverHoursNetIncome = _calculator.CalculateOverHoursNetIncome(_summary.OverHoursGrossIncome);
                 _summary.TotalGrossIncome = _calculator.CalculateTotalGrossIncome(
                     factors.WorkedHours, factors.HourlyFee, _summary.OverHoursGrossIncome);
                 _summary.TotalNetIncome = _calculator.CalculateTotalNetIncome(_summary.TotalGrossIncome);
