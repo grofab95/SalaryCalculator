@@ -1,7 +1,7 @@
 ﻿@if (MonthSalaryReport != null)
 {    
-    <div style="text-decoration-style: solid">
-        <h3>SalaryReport</h3>
+    <div style="margin-top: 50px">
+        <h3>Salary Report</h3>
         Podsumowanie dla miesiąca @Month.NumberToName(MonthSalaryReport.Factors.WorkedMonth):
         Wymiar czasu pracy w tym miesiącu: @MonthSalaryReport.MonthsWorkingHours[MonthSalaryReport.Factors.WorkedMonth] h,
         Przepracowano: @MonthSalaryReport.Factors.WorkedHours h
