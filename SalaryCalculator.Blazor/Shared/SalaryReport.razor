@@ -1,0 +1,20 @@
+﻿@if (MonthSalaryReport != null)
+{    
+    <div style="margin-top: 50px">
+        <h3>Salary Report</h3>
+        Podsumowanie dla miesiąca @Month.NumberToName(MonthSalaryReport.Factors.WorkedMonth):
+        Wymiar czasu pracy w tym miesiącu: @MonthSalaryReport.MonthsWorkingHours[MonthSalaryReport.Factors.WorkedMonth] h,
+        Przepracowano: @MonthSalaryReport.Factors.WorkedHours h
+        Stawka godzinowa (brutto): @MonthSalaryReport.Factors.HourlyFee} zł
+        Liczba nadgodzin: @MonthSalaryReport.Summary.OverHoursAmount
+        wynagrodzenie brutto: @MonthSalaryReport.Summary.OverHoursGrossIncome zł
+        Liczba nadgodzin: @MonthSalaryReport.Summary.OverHoursAmount
+        wynagrodzenie netto: @MonthSalaryReport.Summary.OverHoursNetIncome zł
+        Wynagrodzenie całkowite brutto (podstawa + nadgodziny): @MonthSalaryReport.Summary.TotalGrossIncome zł
+        Wynagrodzenie całkowite netto (podstawa + nadgodziny): @MonthSalaryReport.Summary.TotalNetIncome zł
+    </div>
+}
+
+@code {
+    [Parameter] public MonthSalaryReport MonthSalaryReport { get; set; }
+}

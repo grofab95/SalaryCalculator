@@ -1,0 +1,28 @@
+﻿<h1>Salary Calculator</h1>
+
+<p style="color: red">@_errorMessage</p>
+
+<EditForm Model="@_factors" OnSubmit="Calculate">
+    <div class="form-group">
+        <label>Worked Month: </label>
+        <div>
+            <select class="form-control" @bind="_factors.WorkedMonth">
+                @foreach (var item in _dataToSelect)
+                {
+                    <option selected="selected" value="@item.Key">@item.Value.MonthName</option>
+                }
+            </select>
+        </div>
+        <label>Worked Hours: </label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@_factors.WorkedHours" />
+        </div>
+        <label>Hourly Fee: </label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="@_factors.HourlyFee" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</EditForm>
+
+<SalaryReport MonthSalaryReport="@_monthSalaryReport"/>
